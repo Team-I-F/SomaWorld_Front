@@ -8,9 +8,8 @@ const Boards = () => {
     const myPromise = getboardList();
 
     myPromise.then(function (dataArray) {
-      setBoards(boards, dataArray.data);
+      setBoards(dataArray.data);
     });
-    console.log("아아");
   }
 
   useEffect(() => {
