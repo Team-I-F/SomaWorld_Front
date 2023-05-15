@@ -2,15 +2,17 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getboard } from "../../utils/api/board";
 import { useParams } from "react-router-dom";
+
 import { setBoard } from "../../utils/redux/board";
 
 const Board = () => {
-  const { id } = useParams();
+  const { boardID } = useParams();
   const dispatch = useDispatch();
+
   const board = useSelector((state) => state.boardsReducer.board);
 
-  function initialBoards() {
-    const myPromise = getboard(id);
+  function initialBoard() {
+    const myPromise = getboard(boardID);
     myPromise
       .then(function (data) {
         dispatch(setBoard(data.data));
@@ -21,13 +23,12 @@ const Board = () => {
   }
 
   useEffect(() => {
-    initialBoards();
-    console.log(board);
+    initialBoard();
   }, []);
 
   return (
     <div>
-      <h1>라라라라</h1>
+      <h1>보드</h1>
       {board &&
         board.map((board) => (
           <div>
