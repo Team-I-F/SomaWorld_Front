@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getboardList } from "../../utils/api/board";
@@ -31,10 +32,12 @@ const Boards = () => {
         <div>하하하하하</div>
         {boards && boards.length > 0 ? (
           boards.map((board) => (
-            <div key={board.tableInfoId}>
-              <h1>{board.tableInfoId}</h1>
-              <p>{board.tableName}</p>
-            </div>
+            <Link to={`/board/${board.tableInfoId}`}>
+              <div key={board.tableInfoId}>
+                <h1>{board.tableInfoId}</h1>그 갤러리
+                <p>{board.tableName}</p>
+              </div>
+            </Link>
           ))
         ) : (
           <p>Loading...</p>
