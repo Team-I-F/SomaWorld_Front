@@ -12,5 +12,5 @@ export const getboard = async (boardID) => {
 
 /** 갤러리안의 글 받아옴*/
 export const getTable = async (boardID, tableID) => {
-  return await customAxios.get(`/board/${boardID}/${tableID}`).data;
+  return await customAxios.get(`/board/${boardID}/${tableID}`);
 };

@@ -5,16 +5,16 @@ import { useParams } from "react-router-dom";
 import { setTable } from "../../utils/redux/board";
 
 const Board = () => {
-  const { id } = useParams();
+  const { boardID, tableID } = useParams();
 
   const dispatch = useDispatch();
-  const table = useSelector((state) => state.boardsReducer.board);
+  const table = useSelector((state) => state.boardsReducer.table);
 
   function initialBoards() {
-    const myPromise = getTable(id);
+    const myPromise = getTable(boardID, tableID);
     myPromise
       .then(function (data) {
-        dispatch(setTable(data.data));
+        dispatch(setTable(data.data[0]));
       })
       .catch((error) => {
         console.log(error);
@@ -23,19 +23,21 @@ const Board = () => {
 
   useEffect(() => {
     initialBoards();
-
-    console.log(id, table);
   }, []);
 
   return (
     <div>
       <h1>테이블</h1>
-      {table &&
-        table.map((table) => (
-          <div>
-            <p>집가고싶다</p>
-          </div>
-        ))}
+      {table && (
+        <div>
+          <h1>{table.tableID}</h1>
+          <h1>{table.title}</h1>
+          <h1>{table.created}</h1>
+          <h1>{table.views}</h1>
+          <h1>{table.userNickname}</h1>
+          <h1>{table.description}</h1>
+        </div>
+      )}
     </div>
   );
 };
