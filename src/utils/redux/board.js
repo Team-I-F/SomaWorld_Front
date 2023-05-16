@@ -30,8 +30,6 @@ export const setTable = (table) => ({
 
 // 리듀서 함수 정의
 export default function boardsReducer(state = initialState, action) {
-  console.log(action);
-
   switch (action.type) {
     case SET_BOARDS:
       return {
