@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getboard } from "../../utils/api/board";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import { setBoard } from "../../utils/redux/board";
 
@@ -24,6 +24,7 @@ const Board = () => {
 
   useEffect(() => {
     initialBoard();
+    console.log("", board);
   }, []);
 
   return (
@@ -31,12 +32,15 @@ const Board = () => {
       <h1>보드</h1>
       {board &&
         board.map((board) => (
-          <div>
-            <h1>{board.title}</h1>
-            <span>{board.views}</span>
-            <p>{board.created}</p>
-            <p>{board.userNickname}</p>
-          </div>
+          <Link to={`/board/${boardID}/${board.tableID}`}>
+            <div>
+              <h1>{board.tableID}??</h1>
+              <h1>{board.title}</h1>
+              <span>{board.views}</span>
+              <p>{board.created}</p>
+              <p>{board.userNickname}</p>
+            </div>
+          </Link>
         ))}
     </div>
   );
