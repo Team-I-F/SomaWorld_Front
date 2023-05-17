@@ -1,32 +1,49 @@
-import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { getboardList } from "../../utils/api/board";
+import { setBoards } from "../../utils/redux/board";
 
 const Boards = () => {
-  const [boards, setBoards] = useState([]);
+  const dispatch = useDispatch();
+  const boards = useSelector((state) => state.boardsReducer.boards);
 
   function initialBoards() {
-    const myPromise = getboardList();
-
-    myPromise.then(function (dataArray) {
-      setBoards(boards, dataArray.data);
-    });
-    console.log("아아");
+    const response = getboardList();
+    response
+      .then(function (data) {
+        dispatch(setBoards(data.data));
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   useEffect(() => {
     initialBoards();
+    console.log(boards);
   }, []);
+
+  console.log(boards);
 
   return (
     <div>
-      <h1>아오</h1>
-      {boards &&
-        boards.map((board) => (
-          <>
-            <h1>{board.tableInfoId}</h1>
-            <p>{board.tableName}</p>
-          </>
-        ))}
+      <div>
+        <div>하하하하하</div>
+        {boards && boards.length > 0 ? (
+          boards.map((board) => (
+            <Link to={`/board/${board.tableInfoId}`}>
+              <div key={board.tableInfoId}>
+                <h1>{board.tableInfoId}</h1>그 갤러리
+                <p>{board.tableName}</p>
+              </div>
+            </Link>
+          ))
+        ) : (
+          <p>Loading...</p>
+        )}
+      </div>
     </div>
   );
 };
