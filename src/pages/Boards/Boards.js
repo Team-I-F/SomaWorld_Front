@@ -13,6 +13,7 @@ const Boards = () => {
     response
       .then(function (data) {
         dispatch(setBoards(data.data));
+        console.log(response);
       })
       .catch((error) => {
         console.log(error);
