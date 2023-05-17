@@ -34,7 +34,7 @@ const Board = () => {
         board.map((board) => (
           <Link to={`/board/${boardID}/${board.tableID}`}>
             <div>
-              <h1>{board.tableID}??</h1>
+              <h1>{board.tableID}</h1>
               <h1>{board.title}</h1>
               <span>{board.views}</span>
               <p>{board.created}</p>
