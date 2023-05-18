@@ -1,3 +1,10 @@
+import Header from "../../components/Header/Header";
+
 export default function Main() {
-  return <div>Main</div>;
+  return (
+    <div>
+      <Header />
+      Main
+    </div>
+  );
 }
