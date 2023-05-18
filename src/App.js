@@ -5,6 +5,7 @@ import Main from "./pages/Main/Main";
 import Boards from "./pages/Boards/Boards";
 import Board from "./pages/Board/Board";
 import Table from "./pages/Table/Table";
+import Write from "./pages/Write/Write";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/boards" element={<Boards />}></Route>
         <Route path="/board/:boardID" element={<Board />}></Route>
+        <Route path="/write/:boardID" element={<Write />}></Route>
         <Route path="/board/:boardID/:tableID" element={<Table />}></Route>
         <Route path="/" element={<Main />}></Route>
       </Routes>
