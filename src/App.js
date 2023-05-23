@@ -6,11 +6,13 @@ import Boards from "./pages/Boards/Boards";
 import Board from "./pages/Board/Board";
 import Table from "./pages/Table/Table";
 import Write from "./pages/Write/Write";
+import Search from "./pages/Search/Search";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/search" element={<Search />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/gallery" element={<Boards />}></Route>
         <Route path="/gallery/:boardID" element={<Board />}></Route>
