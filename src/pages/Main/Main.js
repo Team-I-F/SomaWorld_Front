@@ -1,10 +1,15 @@
-import Header from "../../components/Header/Header";
+import React from "react";
 
-export default function Main() {
+import Header from "../../components/Header/Header";
+import SearchBar from "../../components/SearchBar/SearchBar";
+
+const MainPage = () => {
   return (
     <div>
       <Header />
-      Main
+      <SearchBar />
     </div>
   );
-}
+};
+
+export default MainPage;
