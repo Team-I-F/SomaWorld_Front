@@ -15,10 +15,6 @@ export const getTable = async (boardID, tableID) => {
   return await customAxios.get(`/board/${boardID}/${tableID}`);
 };
 
-// export const createPost = async ({ posts }) => {
-//   return await customAxios.post("/application");
-// };
-
 // 게시물 작성
 export const createPost = async (data) => {
   try {
