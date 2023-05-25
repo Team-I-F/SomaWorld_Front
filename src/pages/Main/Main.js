@@ -3,7 +3,7 @@ import Header from "../../components/Header/Header";
 import Post from "../../components/Post/Post";
 import * as S from "./style";
 
-export default function Main() {
+const MainPage = () => {
   return (
     <div>
       <Header />
@@ -14,4 +14,6 @@ export default function Main() {
       <Footer />
     </div>
   );
-}
+};
+
+export default MainPage;
