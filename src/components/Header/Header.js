@@ -12,13 +12,13 @@ function Header() {
           <Button name={"마이페이지"} />
         </S.Buttons>
       </S.Head>
-      <S.Box>
-        <p>소마월드에 오신 것을 환영합니다~!</p>
-      </S.Box>
       <S.Search>
         <S.Searchbox type="Text" placeholder="검색하시오"></S.Searchbox>
         <S.SearchButton>검색</S.SearchButton>
       </S.Search>
+      <S.Box>
+        <p>소마월드에 오신 것을 환영합니다~!</p>
+      </S.Box>
     </div>
   );
 }
