@@ -22,16 +22,19 @@ export const Box = styled.div`
 `;
 
 export const Search = styled.div`
-  height: 60px;
-  width: 355px;
-  border: 1px solid #1b5ac2;
+  display: flex;
+  margin-left: auto;
+  margin-right: 20px;
+  height: 40px;
+  width: 400px;
+  border: 1px solid lightgrey;
   background: #ffffff;
 `;
 
 export const Searchbox = styled.input`
   font-size: 16px;
   width: 325px;
-  padding: 10px;
+  padding: 15px;
   border: 0px;
   float: left;
   outline: none;
@@ -39,10 +42,11 @@ export const Searchbox = styled.input`
 
 export const SearchButton = styled.button`
   width: 50px;
-  height: 70%;
+  height: 100%;
   border: 0px;
   padding: 10px;
-  background-color: #1b5ac2;
+  background-color: lightgrey;
   float: right;
   color: #ffffff;
+  outline: none;
 `;
