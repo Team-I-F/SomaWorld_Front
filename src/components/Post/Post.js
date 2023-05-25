@@ -1,11 +1,7 @@
 import * as S from "./style";
 
 function Post() {
-  return (
-    <div>
-      <S.Head>🔥인기글</S.Head>
-    </div>
-  );
+  return <div></div>;
 }
 
 export default Post;
