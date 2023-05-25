@@ -1,83 +1,52 @@
-// import { useEffect, useState } from "react";
-// import { axios } from "axios";
-// import { useParams } from "react-router-dom";
-
-// export default function Write() {
-//   const { boardID } = useParams();
-
-//   const [title, setTitle] = useState("");
-//   const [mainText, setMainText] = useState("");
-
-//   const submit = () => {
-//     // axios
-//     //   .post("/board/insert", {
-//     //     tableInfoId: tableInfoId,
-//     //     title: title,
-//     //     userNickname: userNickname,
-//     //     description: description,
-//     //   })
-//     //   .then(
-//     //     (response) => {
-//     //       console.log(response);
-//     //     },
-//     //     (error) => {
-//     //       console.log(error);
-//     //     }
-//     //   );
-//     // console.log();
-//   };
-
-//   useEffect(() => console.log(boardID), []);
-//   return (
-//     <div className="board">
-//       <form className="form">
-//         <div>
-//           <input type="text" onChange={(e) => setTitle(e.target.value)} />
-//           <input type="text" onChange={(e) => setMainText(e.target.value)} />
-//           <input type="text" onChange={(e) => setMainText(e.target.value)} />
-//           <input type="text" onChange={(e) => setMainText(e.target.value)} />
-
-//           <div>
-//             <button>게시글 등록</button>
-//           </div>
-//         </div>
-//       </form>
-//     </div>
-//   );
-// }
-
 import React, { useState } from "react";
-import OrEdit from "./Section/OrEdit";
+import { createPost } from "../../utils/api/board";
+import { useParams } from "react-router-dom";
 
-function RegisterPage() {
-  const [TitleValue, setTitleValue] = useState("");
-  const [ContentValue, setContentValue] = useState("");
-  const [IsForUpdate, setIsForUpdate] = useState(false);
+const PostForm = () => {
+  const { boardID } = useParams();
 
-  const onTitleChange = (event) => {
-    setTitleValue(event.currentTarget.value);
-  };
+  const [title, setTitle] = useState("");
+  const [userNickname, setUserNickname] = useState("");
+  const [description, setDescription] = useState("");
 
-  const onContentChange = (event) => {
-    setContentValue(event.currentTarget.value);
-  };
-
-  const onSubmitArticle = (event) => {
-    event.preventDefault();
-    const article = { title: TitleValue, content: ContentValue };
-    console.log(article);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const data = {
+        tableInfoId: boardID,
+        title,
+        userNickname,
+        description,
+      };
+      const createdPost = await createPost(data);
+      console.log("게시물 작성 완료:", createdPost);
+    } catch (error) {
+      console.log("게시물 작성 실패:", error.message);
+    }
   };
 
   return (
-    <OrEdit
-      titleValue={TitleValue}
-      contentValue={ContentValue}
-      handleTitleChange={onTitleChange}
-      handleContentChange={onContentChange}
-      handleSubmit={onSubmitArticle}
-      updateRequest={IsForUpdate}
-    />
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        placeholder="제목"
+      />
+      <input
+        type="text"
+        value={userNickname}
+        onChange={(e) => setUserNickname(e.target.value)}
+        placeholder="작성자"
+      />
+      <textarea
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+        placeholder="본문"
+      ></textarea>
+      <button type="submit">작성</button>
+    </form>
   );
-}
+};
 
-export default RegisterPage;
+export default PostForm;
