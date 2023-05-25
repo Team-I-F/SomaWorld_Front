@@ -1,3 +1,4 @@
+import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import Post from "../../components/Post/Post";
 import * as S from "./style";
@@ -10,6 +11,7 @@ export default function Main() {
         <S.Head>🔥인기글</S.Head>
         <Post />
       </div>
+      <Footer />
     </div>
   );
 }
