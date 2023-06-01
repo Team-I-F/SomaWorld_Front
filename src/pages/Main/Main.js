@@ -1,17 +1,27 @@
-import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import Post from "../../components/Post/Post";
+
 import * as S from "./style";
 
 const MainPage = () => {
   return (
     <div>
       <Header />
-      <div>
-        <S.Head>🔥인기글</S.Head>
-        <Post />
+      <S.Head>🔥인기글</S.Head>
+
+      <div style={{ margin: "auto 100px", backgroundColor: "aliceblue" }}>
+        <S.posts>
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+        </S.posts>
       </div>
-      <Footer />
     </div>
   );
 };
