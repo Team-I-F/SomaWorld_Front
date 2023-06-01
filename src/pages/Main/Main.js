@@ -1,13 +1,27 @@
-import React from "react";
-
 import Header from "../../components/Header/Header";
-import SearchBar from "../../components/SearchBar/SearchBar";
+import Post from "../../components/Post/Post";
+
+import * as S from "./style";
 
 const MainPage = () => {
   return (
     <div>
       <Header />
-      <SearchBar />
+      <S.Head>🔥인기글</S.Head>
+
+      <div style={{ margin: "auto 100px", backgroundColor: "aliceblue" }}>
+        <S.posts>
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+        </S.posts>
+      </div>
     </div>
   );
 };

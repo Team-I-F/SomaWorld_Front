@@ -1,40 +1,106 @@
-import { useState } from "react";
-import axios from "axios";
+import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import customAxios from "../../utils/axios/axios";
 
-const GOOGLE_CLIENT_ID =
-  "884140746352-l95mrf3mucmi5bqn0n8a2ni0756s4q0k.apps.googleusercontent.com";
-const GOOGLE_LOGIN_REDIRECT_URI = "http://localhost:3000/login/redirect";
-const GOOGLE_TOKEN_URL = "https://oauth2.googleapis.com/token";
-const GOOGLE_USERINFO_URL = "https://www.googleapis.com/oauth2/v2/userinfo";
+const LoginForm = () => {
+  const idRef = useRef();
+  const pwRef = useRef();
 
-export default function Login() {
-  const [error, setError] = useState(null);
-  async function handleLogin() {
-    try {
-      const { data } = await axios.get("/googleLogin");
-      window.location.href = data;
-    } catch (error) {
-      setError("Failed to login with Google");
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    if (idRef.current.value === "" || idRef.current.value === undefined) {
+      alert("아이디를 입력하세요!!!");
+      idRef.current.focus();
+      return false;
     }
-  }
-
-  async function handleLoginRedirect() {
-    try {
-      const code = new URLSearchParams(window.location.search).get("code");
-      const { data } = await axios.get(`/login/redirect?code=${code}`);
-      console.log(data);
-    } catch (error) {
-      setError("Failed to login with Google");
+    if (pwRef.current.value === "" || pwRef.current.value === undefined) {
+      alert("패스워드를 입력하세요!!!");
+      pwRef.current.focus();
+      return false;
     }
-  }
+
+    console.log(
+      "LoginForm:window.sessionStorage(login_id) =>",
+      window.sessionStorage.getItem("id")
+    );
+
+    customAxios
+      .post("/login", {
+        id: idRef.current.value,
+        pw: pwRef.current.value,
+      })
+      .then((res) => {
+        console.log("handleLogin =>", res);
+        if (res.data[0].cnt === 1) {
+          window.sessionStorage.setItem("id", idRef.current.value);
+          navigate("/main");
+        } else {
+          alert("아이디, 패스워드가 정확하지 않습니다.");
+          idRef.current.value = "";
+          pwRef.current.value = "";
+          navigate("/");
+        }
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  };
+
+  const handleMemberForm = () => {
+    navigate("/member");
+  };
 
   return (
     <div>
-      <h1>Login</h1>
-      {error && <div>{error}</div>}
-      <button onClick={handleLogin}>Login with Google</button>
-      {new URLSearchParams(window.location.search).has("code") &&
-        handleLoginRedirect()}
+      <p></p>
+      <form>
+        <table border="1" width="300px" align="center">
+          <tbody>
+            <tr>
+              <td width="100px">아이디</td>
+              <td align="left" width="200px">
+                <input
+                  type="text"
+                  name="id"
+                  size="20"
+                  ref={idRef}
+                  placeholder="아이디를 입력하세요"
+                ></input>
+              </td>
+            </tr>
+            <tr>
+              <td width="100px">패스워드</td>
+              <td align="left" width="200px">
+                <input
+                  type="password"
+                  name="pw"
+                  size="20"
+                  ref={pwRef}
+                  placeholder="비밀번호를 입력하세요"
+                ></input>
+              </td>
+            </tr>
+            <tr>
+              <td colSpan="2" align="center">
+                <input
+                  type="button"
+                  value="로그인"
+                  onClick={handleLogin}
+                ></input>
+                &nbsp;
+                <input
+                  type="button"
+                  value="회원등록"
+                  onClick={handleMemberForm}
+                ></input>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
     </div>
   );
-}
+};
+
+export default LoginForm;
