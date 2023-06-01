@@ -24,15 +24,15 @@ const Board = () => {
 
   useEffect(() => {
     initialBoard();
-    console.log("", board);
+    console.log("", boardID);
   }, []);
 
   return (
     <div>
-      <h1>보드</h1>
+      <h1>갤러리</h1>
       {board &&
         board.map((board) => (
-          <Link to={`/board/${boardID}/${board.tableID}`}>
+          <Link to={`/gallery/${boardID}/${board.tableID}`}>
             <div>
               <h1>{board.tableID}</h1>
               <h1>{board.title}</h1>

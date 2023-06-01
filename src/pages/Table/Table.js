@@ -23,6 +23,7 @@ const Board = () => {
 
   useEffect(() => {
     initialBoards();
+    console.log(table);
   }, []);
 
   return (
