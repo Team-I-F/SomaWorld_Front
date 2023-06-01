@@ -1,40 +1,57 @@
-import { useState } from "react";
-import axios from "axios";
+import React, { useState } from "react";
+import customAxios from "../../utils/axios/axios";
 
-const GOOGLE_CLIENT_ID =
-  "884140746352-l95mrf3mucmi5bqn0n8a2ni0756s4q0k.apps.googleusercontent.com";
-const GOOGLE_LOGIN_REDIRECT_URI = "http://localhost:3000/login/redirect";
-const GOOGLE_TOKEN_URL = "https://oauth2.googleapis.com/token";
-const GOOGLE_USERINFO_URL = "https://www.googleapis.com/oauth2/v2/userinfo";
+const Login = () => {
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
 
-export default function Login() {
-  const [error, setError] = useState(null);
-  async function handleLogin() {
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
     try {
-      const { data } = await axios.get("/googleLogin");
-      window.location.href = data;
+      const response = await customAxios.post("/user/login", {
+        id,
+        pw: password,
+      });
+      if (response.data.message === "success") {
+        // 로그인 성공 시 처리
+        console.log("로그인 성공");
+      } else {
+        // 로그인 실패 시 처리
+        console.log("로그인 실패");
+      }
     } catch (error) {
-      setError("Failed to login with Google");
+      console.log(error);
+      // 에러 처리
     }
-  }
-
-  async function handleLoginRedirect() {
-    try {
-      const code = new URLSearchParams(window.location.search).get("code");
-      const { data } = await axios.get(`/login/redirect?code=${code}`);
-      console.log(data);
-    } catch (error) {
-      setError("Failed to login with Google");
-    }
-  }
+  };
 
   return (
     <div>
-      <h1>Login</h1>
-      {error && <div>{error}</div>}
-      <button onClick={handleLogin}>Login with Google</button>
-      {new URLSearchParams(window.location.search).has("code") &&
-        handleLoginRedirect()}
+      <h2>Login</h2>
+      <form onSubmit={handleLogin}>
+        <div>
+          <label htmlFor="id">ID: </label>
+          <input
+            type="text"
+            id="id"
+            value={id}
+            onChange={(e) => setId(e.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="password">Password: </label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <button type="submit">Login</button>
+      </form>
     </div>
   );
-}
+};
+
+export default Login;
