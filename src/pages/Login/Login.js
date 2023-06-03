@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import customAxios from "../../utils/axios/axios";
+import * as S from "./style";
+import { Link } from "react-router-dom";
+import arrowDown from "../../assets/arrow-down.png";
 
 const Login = () => {
   const [id, setId] = useState("");
@@ -27,30 +30,52 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <div>
-          <label htmlFor="id">ID: </label>
-          <input
-            type="text"
-            id="id"
-            value={id}
-            onChange={(e) => setId(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password: </label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <button type="submit">Login</button>
-      </form>
-    </div>
+    <S.Container>
+      <S.LoginForm onSubmit={handleLogin}>
+        <S.LoginIcon
+          style={{ transform: "rotate(90)" }}
+          src={arrowDown}
+          alt="아으"
+        />
+
+        <S.Frame>
+          <S.Title>로그인</S.Title>
+          <S.LoginContainer>
+            <S.FormField>
+              <S.Label>아이디</S.Label>
+              <S.Input
+                type="text"
+                id="id"
+                value={id}
+                placeholder="아이디"
+                onChange={(e) => setId(e.target.value)}
+              />
+            </S.FormField>
+            <S.FormField>
+              <S.Label>비밀번호</S.Label>
+              <S.Input
+                type="password"
+                id="password"
+                value={password}
+                placeholder="비밀번호"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </S.FormField>
+            <div>
+              <Link to={`/`} style={{ color: "#0047FF" }}>
+                <p style={{ fontSize: "18px", marginTop: "30px" }}>
+                  아이디/ 비밀번호를 잊으셨나요?
+                </p>
+              </Link>
+            </div>
+
+            <S.ButtonContainer>
+              <S.Button type="submit">로그인</S.Button>
+            </S.ButtonContainer>
+          </S.LoginContainer>
+        </S.Frame>
+      </S.LoginForm>
+    </S.Container>
   );
 };
 
