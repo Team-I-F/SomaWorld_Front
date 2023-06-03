@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getTable } from "../../utils/api/board";
 import { useParams } from "react-router-dom";
 import { setTable } from "../../utils/redux/board";
+import Post from "../../components/Post/Post";
 
 const Board = () => {
   const { boardID, tableID } = useParams();
@@ -31,12 +32,7 @@ const Board = () => {
       <h1>테이블</h1>
       {table && (
         <div>
-          <h1>{table.tableID}</h1>
-          <h1>{table.title}</h1>
-          <h1>{table.created}</h1>
-          <h1>{table.views}</h1>
-          <h1>{table.userNickname}</h1>
-          <h1>{table.description}</h1>
+          <Post table={table} />
         </div>
       )}
     </div>
