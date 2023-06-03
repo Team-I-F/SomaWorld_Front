@@ -9,19 +9,7 @@ const MainPage = () => {
       <Header />
       <S.Head>🔥인기글</S.Head>
 
-      <div style={{ margin: "auto 100px", backgroundColor: "aliceblue" }}>
-        <S.posts>
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-        </S.posts>
-      </div>
+      <div style={{ margin: "auto 100px", backgroundColor: "aliceblue" }}></div>
     </div>
   );
 };
