@@ -32,11 +32,13 @@ const Login = () => {
   return (
     <S.Container>
       <S.LoginForm onSubmit={handleLogin}>
-        <S.LoginIcon
-          style={{ transform: "rotate(90)" }}
-          src={arrowDown}
-          alt="아으"
-        />
+        <Link to={`/`}>
+          <S.LoginIcon
+            style={{ transform: "rotate(90)" }}
+            src={arrowDown}
+            alt="아으"
+          />
+        </Link>
 
         <S.Frame>
           <S.Title>로그인</S.Title>
