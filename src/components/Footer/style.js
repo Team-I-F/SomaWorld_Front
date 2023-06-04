@@ -1,19 +1,10 @@
 import styled from "styled-components";
 
-export const Footer = styled.footer`
-  height: 200px;
+export const Footer = styled.div`
+  background-color: #95b9ff;
+  height: 40px;
   width: 100%;
-  background-color: #87adf6;
+  position: absolute;
+  margin-top: 50px;
   color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const LeftText = styled.div`
-  margin-left: 100px;
-`;
-export const LightText = styled.div`
-  margin-left: auto;
-  margin-right: 100px;
 `;
