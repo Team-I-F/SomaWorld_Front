@@ -5,15 +5,21 @@ import Main from "./pages/Main/Main";
 import Boards from "./pages/Boards/Boards";
 import Board from "./pages/Board/Board";
 import Table from "./pages/Table/Table";
+import Write from "./pages/Write/Write";
+import Search from "./pages/Search/Search";
+import SignupPage from "./pages/SignUp/Signup";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/search" element={<Search />}></Route>
         <Route path="/login" element={<Login />}></Route>
-        <Route path="/boards" element={<Boards />}></Route>
-        <Route path="/board/:boardID" element={<Board />}></Route>
-        <Route path="/board/:boardID/:tableID" element={<Table />}></Route>
+        <Route path="/signup" element={<SignupPage />}></Route>
+        <Route path="/gallery" element={<Boards />}></Route>
+        <Route path="/gallery/:boardID" element={<Board />}></Route>
+        <Route path="/:boardID/write" element={<Write />}></Route>
+        <Route path="/gallery/:boardID/:tableID" element={<Table />}></Route>
         <Route path="/" element={<Main />}></Route>
       </Routes>
     </BrowserRouter>
