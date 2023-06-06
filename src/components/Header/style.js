@@ -9,12 +9,14 @@ export const HeadTitle = styled.span`
   line-height: 44px;
   font-style: normal;
   margin: 5px 0px 0px 40px;
+  font-family: "Akaya Telivigala", cursive;
+  font-weight: bold;
 `;
 
 export const Buttons = styled.div`
   margin-left: auto;
   margin-top: 10px;
-  text-align: right;
+  text-align: center;
 `;
 
 export const line = styled.div`
@@ -22,32 +24,8 @@ export const line = styled.div`
   margin-bottom: 50px;
 `;
 
-// export const Search = styled.div`
-//   display: flex;
-//   margin-left: auto;
-//   margin-right: 20px;
-//   height: 40px;
-//   width: 400px;
-//   border: 1px solid lightgrey;
-//   background: #ffffff;
-// `;
-
-// export const Searchbox = styled.input`
-//   font-size: 16px;
-//   width: 325px;
-//   padding: 15px;
-//   border: 0px;
-//   float: left;
-//   outline: none;
-// `;
-
-export const SearchButton = styled.button`
-  width: 50px;
-  height: 100%;
-  border: 0px;
-  padding: 10px;
-  background-color: lightgrey;
-  float: right;
-  color: #ffffff;
-  outline: none;
+export const SearchButton = styled.img`
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
 `;
