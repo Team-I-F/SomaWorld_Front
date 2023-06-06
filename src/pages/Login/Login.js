@@ -1,106 +1,84 @@
-import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import customAxios from "../../utils/axios/axios";
+import * as S from "./style";
+import { Link } from "react-router-dom";
+import arrowDown from "../../assets/arrow-down.png";
 
-const LoginForm = () => {
-  const idRef = useRef();
-  const pwRef = useRef();
+const Login = () => {
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
 
-  const navigate = useNavigate();
+  const handleLogin = async (e) => {
+    e.preventDefault();
 
-  const handleLogin = () => {
-    if (idRef.current.value === "" || idRef.current.value === undefined) {
-      alert("아이디를 입력하세요!!!");
-      idRef.current.focus();
-      return false;
-    }
-    if (pwRef.current.value === "" || pwRef.current.value === undefined) {
-      alert("패스워드를 입력하세요!!!");
-      pwRef.current.focus();
-      return false;
-    }
-
-    console.log(
-      "LoginForm:window.sessionStorage(login_id) =>",
-      window.sessionStorage.getItem("id")
-    );
-
-    customAxios
-      .post("/login", {
-        id: idRef.current.value,
-        pw: pwRef.current.value,
-      })
-      .then((res) => {
-        console.log("handleLogin =>", res);
-        if (res.data[0].cnt === 1) {
-          window.sessionStorage.setItem("id", idRef.current.value);
-          navigate("/main");
-        } else {
-          alert("아이디, 패스워드가 정확하지 않습니다.");
-          idRef.current.value = "";
-          pwRef.current.value = "";
-          navigate("/");
-        }
-      })
-      .catch((e) => {
-        console.error(e);
+    try {
+      const response = await customAxios.post("/user/login", {
+        id,
+        pw: password,
       });
-  };
-
-  const handleMemberForm = () => {
-    navigate("/member");
+      if (response.data.message === "success") {
+        // 로그인 성공 시 처리
+        console.log("로그인 성공");
+      } else {
+        // 로그인 실패 시 처리
+        console.log("로그인 실패");
+      }
+    } catch (error) {
+      console.log(error);
+      // 에러 처리
+    }
   };
 
   return (
-    <div>
-      <p></p>
-      <form>
-        <table border="1" width="300px" align="center">
-          <tbody>
-            <tr>
-              <td width="100px">아이디</td>
-              <td align="left" width="200px">
-                <input
-                  type="text"
-                  name="id"
-                  size="20"
-                  ref={idRef}
-                  placeholder="아이디를 입력하세요"
-                ></input>
-              </td>
-            </tr>
-            <tr>
-              <td width="100px">패스워드</td>
-              <td align="left" width="200px">
-                <input
-                  type="password"
-                  name="pw"
-                  size="20"
-                  ref={pwRef}
-                  placeholder="비밀번호를 입력하세요"
-                ></input>
-              </td>
-            </tr>
-            <tr>
-              <td colSpan="2" align="center">
-                <input
-                  type="button"
-                  value="로그인"
-                  onClick={handleLogin}
-                ></input>
-                &nbsp;
-                <input
-                  type="button"
-                  value="회원등록"
-                  onClick={handleMemberForm}
-                ></input>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </form>
-    </div>
+    <S.Container>
+      <S.LoginForm onSubmit={handleLogin}>
+        <Link to={`/`}>
+          <S.LoginIcon
+            style={{ transform: "rotate(90)" }}
+            src={arrowDown}
+            alt="아으"
+          />
+        </Link>
+
+        <S.Frame>
+          <S.Title>로그인</S.Title>
+          <S.LoginContainer>
+            <S.FormField>
+              <S.Label>아이디</S.Label>
+              <S.Input
+                type="text"
+                id="id"
+                value={id}
+                placeholder="아이디"
+                onChange={(e) => setId(e.target.value)}
+              />
+            </S.FormField>
+            <S.FormField>
+              <S.Label>비밀번호</S.Label>
+              <S.Input
+                type="password"
+                id="password"
+                value={password}
+                placeholder="비밀번호"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </S.FormField>
+            <div>
+              <Link to={`/`} style={{ color: "#0047FF" }}>
+                <p style={{ fontSize: "18px", marginTop: "30px" }}>
+                  아이디/ 비밀번호를 잊으셨나요?
+                </p>
+              </Link>
+            </div>
+
+            <S.ButtonContainer>
+              <S.Button type="submit">로그인</S.Button>
+            </S.ButtonContainer>
+          </S.LoginContainer>
+        </S.Frame>
+      </S.LoginForm>
+    </S.Container>
   );
 };
 
-export default LoginForm;
+export default Login;
