@@ -23,10 +23,26 @@ export const BottomBox = styled.div`
 `;
 
 export const Texts = styled.div`
-  background-color: aliceblue;
+  background-color: white;
   margin: 10px;
 `;
 
 export const Title = styled.div`
-  font-size: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+`;
+
+export const Script = styled.div`
+  font-size: 15px;
+`;
+
+export const Nickname = styled.div`
+  font-size: 15px;
+  bottom: auto;
+`;
+
+export const view = styled.div`
+  font-size: 15px;
+  float: right;
 `;
