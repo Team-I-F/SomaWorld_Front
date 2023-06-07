@@ -13,3 +13,10 @@ export const posts = styled.div`
   flex-wrap: wrap;
   gap: 20px;
 `;
+
+export const PostTabTitle = styled.p`
+  font-size: 30px;
+  font-family: "MBC1961GulimM";
+  display: flex;
+  margin-left: 8%;
+`;
