@@ -1,6 +1,7 @@
 import Header from "../../components/Header/Header";
 import Post from "../../components/Post/Post";
 import Notice from "../../components/Notice/Notice";
+import Footer from "../../components/Footer/Footer";
 
 import * as S from "./style";
 
@@ -8,8 +9,8 @@ const MainPage = () => {
   return (
     <div>
       <Header />
-      <S.Head>🔥인기글</S.Head>
       <Notice />
+      <S.PostTabTitle>소마월드와 함께 다양한 이야기를 해보세요.</S.PostTabTitle>
       <div
         style={{
           margin: "0px auto",
@@ -32,6 +33,7 @@ const MainPage = () => {
         <Post />
         <Post />
       </div>
+      <Footer />
     </div>
   );
 };
