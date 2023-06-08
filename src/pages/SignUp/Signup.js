@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import customAxios from "../../utils/axios/axios";
+import { useNavigate } from "react-router-dom";
 
 const SignupPage = () => {
+  const navigate = useNavigate();
+
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -18,6 +21,7 @@ const SignupPage = () => {
       });
       if (response.status === 200) {
         console.log("회원가입이 완료되었습니다.");
+        navigate("/");
       }
     } catch (error) {
       console.log(error);
