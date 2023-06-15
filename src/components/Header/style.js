@@ -15,6 +15,7 @@ export const HeadTitle = styled.span`
 
 export const Buttons = styled.div`
   margin-left: auto;
+  margin-right: 10px;
   margin-top: 10px;
   text-align: center;
 `;
