@@ -3,6 +3,8 @@ import Post from "../../components/Post/Post";
 import Notice from "../../components/Notice/Notice";
 import Footer from "../../components/Footer/Footer";
 
+import PostData from "./dummy";
+
 import * as S from "./style";
 
 const MainPage = () => {
@@ -15,6 +17,7 @@ const MainPage = () => {
       >
         소마월드와 함께 다양한 이야기를 해보세요.
       </S.PostTabTitle>
+
       <div style={{ justifyContent: "center" }}>
         <div
           style={{
@@ -25,20 +28,17 @@ const MainPage = () => {
             width: "1300px",
           }}
         >
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
+          {PostData.map((item) => (
+            <Post
+              title={item.title}
+              description={item.description}
+              coverImg={item.coverImg}
+              userName={item.userName}
+            />
+          ))}
         </div>
       </div>
+
       <Footer />
     </div>
   );

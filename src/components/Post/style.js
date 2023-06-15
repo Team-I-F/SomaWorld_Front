@@ -8,8 +8,7 @@ export const PostTap = styled.div`
   border-radius: 10px;
 `;
 
-export const Img = styled.div`
-  background-color: lightgray;
+export const Img = styled.img`
   width: 100%;
   height: 50%;
   border-radius: 10px 10px 0px 0px;
@@ -34,6 +33,7 @@ export const Title = styled.div`
 
 export const Script = styled.p`
   font-size: 15px;
+  height: 65px;
 `;
 
 export const Nickname = styled.div`
