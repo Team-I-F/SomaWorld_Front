@@ -9,7 +9,9 @@ function Notice() {
 
       <S.NoticeBox>
         <img src="assets/img7.png" alt="hihi"></img>
-        <div style={{ margin: "70px" }}>
+        <div
+          style={{ marginTop: "100px", marginLeft: "70px", fontWeight: "600" }}
+        >
           <S.NoticeScript>10월 15일,</S.NoticeScript>
           <br />
           <S.NoticeScript>부소마 4기 신입생 피드 open!</S.NoticeScript>

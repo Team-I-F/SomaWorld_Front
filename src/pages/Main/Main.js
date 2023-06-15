@@ -10,7 +10,11 @@ const MainPage = () => {
     <div>
       <Header />
       <Notice />
-      <S.PostTabTitle>소마월드와 함께 다양한 이야기를 해보세요.</S.PostTabTitle>
+      <S.PostTabTitle
+        style={{ fontFamily: "Cafe24Ssurround", fontWeight: "600" }}
+      >
+        소마월드와 함께 다양한 이야기를 해보세요.
+      </S.PostTabTitle>
       <div style={{ justifyContent: "center" }}>
         <div
           style={{
