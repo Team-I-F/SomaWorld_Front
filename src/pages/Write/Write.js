@@ -1,8 +1,35 @@
 import React, { useState } from "react";
 import { createPost } from "../../utils/api/board";
 import { useParams, useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
-const PostForm = () => {
+const PostBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+const FormLeft = styled.div`
+  width: 50%;
+`;
+
+const FormRight = styled.div`
+  width: 50%;
+`;
+
+const Input = styled.input`
+  margin: 10px 0;
+`;
+
+const Textarea = styled.textarea`
+  margin: 10px 0;
+`;
+
+const Button = styled.button`
+  margin: 10px 0;
+`;
+
+const Write = () => {
   const { boardID } = useParams();
   const navigate = useNavigate();
 
@@ -12,8 +39,7 @@ const PostForm = () => {
     description: "",
   });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleWrite = async () => {
     try {
       const data = {
         tableInfoId: boardID,
@@ -38,30 +64,42 @@ const PostForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="title"
-        value={formData.title}
-        onChange={handleInputChange}
-        placeholder="제목"
-      />
-      <input
-        type="text"
-        name="userNickname"
-        value={formData.userNickname}
-        onChange={handleInputChange}
-        placeholder="작성자"
-      />
-      <textarea
-        name="description"
-        value={formData.description}
-        onChange={handleInputChange}
-        placeholder="본문"
-      ></textarea>
-      <button type="submit">작성</button>
-    </form>
+    <div>
+      <PostBox>
+        <FormLeft>
+          <div>
+            <Input
+              type="text"
+              name="title"
+              value={formData.title}
+              onChange={handleInputChange}
+              placeholder="제목"
+            />
+            <Input
+              type="text"
+              name="userNickname"
+              value={formData.userNickname}
+              onChange={handleInputChange}
+              placeholder="작성자"
+            />
+            <Textarea
+              name="description"
+              value={formData.description}
+              onChange={handleInputChange}
+              placeholder="본문"
+            ></Textarea>
+            <Button onClick={handleWrite}>작성</Button>
+          </div>
+        </FormLeft>
+        <FormRight>
+          <p>미리보기</p>
+          <p>제목: {formData.title}</p>
+          <p>작성자: {formData.userNickname}</p>
+          <p>본문: {formData.description}</p>
+        </FormRight>
+      </PostBox>
+    </div>
   );
 };
 
-export default PostForm;
+export default Write;
