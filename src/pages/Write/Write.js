@@ -2,17 +2,42 @@ import React, { useState } from "react";
 import { createPost } from "../../utils/api/board";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-
+import * as S from "./style"
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
 
-// 웹 에디터
+
+const StyledReactQuill = styled(ReactQuill)`
+
+  .ql-toolbar {
+    height: 100px;
+    
+    position: sticky;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+  }
+
+  .ql-formats {
+    margin-right: 200px;
+
+    button {
+      font-size: 20px; 
+    }
+  }
+
+
+`;
+
+
 const modules = {
   toolbar: {
       container: [
         [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-        [{ 'font': [] }],
+        // [{ 'font': [] }],
         [{ 'align': [] }],
         ['bold', 'italic', 'underline', 'strike', 'blockquote'],
         [{ 'list': 'ordered' }, { 'list': 'bullet' }, 'link'],
@@ -22,29 +47,6 @@ const modules = {
       ],
   }
 }
-
-
-const PostBox = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-`;
-
-const Left = styled.div`
-  width: 50%;
-`;
-
-const Right = styled.div`
-  width: 50%;
-`;
-
-const Input = styled.input`
-  margin: 10px 0;
-`;
-
-const Button = styled.button`
-  margin: 10px 0;
-`;
 
 const Write = () => {
   const { boardID } = useParams();
@@ -65,7 +67,7 @@ const Write = () => {
       const createdPost = await createPost(data);
       console.log("게시물 작성 완료:", createdPost);
 
-      // navigate("/about");
+      // navigate(`/${boardID}`);
     } catch (error) {
       console.log("게시물 작성 실패:", error.message);
     }
@@ -81,23 +83,23 @@ const Write = () => {
 
   return (
     <div>
-      <PostBox>
-        <Left>
+      <S.PostBox>
+        
           <div>
-            <Input
+            {/* <S.Input
               type="text"
               name="title"
               value={formData.title}
               onChange={handleInputChange}
               placeholder="제목"
             />
-            <Input
+            <S.Input
               type="text"
               name="userNickname"
               value={formData.userNickname}
               onChange={handleInputChange}
               placeholder="작성자"
-            />
+            /> */}
             {/* <Textarea
               name="description"
               value={formData.description}
@@ -105,7 +107,7 @@ const Write = () => {
               placeholder="본문"
             ></Textarea> */}
 
-            <ReactQuill
+            <StyledReactQuill
               name="description"
               value={formData.description}
               onChange={(value) =>
@@ -115,15 +117,10 @@ const Write = () => {
               modules={modules}
             />
 
-            <Button onClick={handleWrite}>작성</Button>
+            <S.Button onClick={handleWrite}>작성</S.Button>
           </div>
-        </Left>
-        <Right>
-          <p>제목: {formData.title}</p>
-          <p>작성자: {formData.userNickname}</p>
-          <p>본문: {formData.description}</p>
-        </Right>
-      </PostBox>
+        
+      </S.PostBox>
     </div>
   );
 };
