@@ -10,15 +10,17 @@ import "react-quill/dist/quill.snow.css";
 
 const StyledReactQuill = styled(ReactQuill)`
 
+  position: relative;
+
   .ql-toolbar {
     height: 100px;
-    
     position: sticky;
-    
     display: flex;
     align-items: center;
     justify-content: center;
     border: none;
+
+    
   }
 
   .ql-formats {
