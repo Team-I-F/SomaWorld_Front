@@ -9,8 +9,10 @@ import "react-quill/dist/quill.snow.css";
 
 
 const StyledReactQuill = styled(ReactQuill)`
-
-  position: relative;
+  .quill{
+    background-color: aliceblue;
+    position: relative;
+  }
 
   .ql-toolbar {
     height: 100px;
@@ -19,18 +21,18 @@ const StyledReactQuill = styled(ReactQuill)`
     align-items: center;
     justify-content: center;
     border: none;
-
-    
   }
 
   .ql-formats {
-    margin-right: 200px;
-
     button {
       font-size: 20px; 
     }
   }
 
+  .ql-container{
+    margin-top: 200px;
+    background-color: aliceblue;
+  }
 
 `;
 
@@ -84,7 +86,7 @@ const Write = () => {
   };
 
   return (
-    <div>
+    <div style={{ position: "relative"}}>
       <S.PostBox>
         
           <div>
