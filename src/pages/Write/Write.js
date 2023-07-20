@@ -7,36 +7,6 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
 
-
-const StyledReactQuill = styled(ReactQuill)`
-  .quill{
-    background-color: aliceblue;
-    position: relative;
-  }
-
-  .ql-toolbar {
-    height: 100px;
-    position: sticky;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-  }
-
-  .ql-formats {
-    button {
-      font-size: 20px; 
-    }
-  }
-
-  .ql-container{
-    margin-top: 200px;
-    background-color: aliceblue;
-  }
-
-`;
-
-
 const modules = {
   toolbar: {
       container: [
@@ -117,11 +87,11 @@ const Write = () => {
               onChange={(value) =>
                 handleInputChange({ target: { name: "description", value } })
               }
-              placeholder="본문"
               modules={modules}
             />
 
-            <S.Button onClick={handleWrite}>작성</S.Button>
+              <S.Button onClick={handleWrite}>작성</S.Button>
+            
           </div>
         
       </S.PostBox>
@@ -130,3 +100,43 @@ const Write = () => {
 };
 
 export default Write;
+
+
+
+const StyledReactQuill = styled(ReactQuill)`
+  
+  position: relative;
+
+  .quill{
+    background-color: aliceblue;
+    position: relative;
+  }
+
+  .ql-toolbar {
+    height: 100px;
+    width: 100%;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ql-formats {
+    /* button {
+      font-size: 20px; 
+    } */
+  }
+
+  .ql-container{
+    position: fixed;
+    margin-top: 100px;
+    width: 60%;
+    overflow-y: auto;
+    margin-left: 20%;
+    border: none;
+  }
+
+  .ql-editor{
+  }
+
+`;
