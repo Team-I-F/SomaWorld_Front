@@ -126,15 +126,19 @@ const Write = () => {
               placeholder="본문"
             ></Textarea> */}
 
-          <StyledReactQuill
-            name="description"
-            value={formData.description}
-            onChange={(value) =>
-              handleInputChange({ target: { name: "description", value } })
-            }
-            modules={modules}
-          />
-        </div>
+            <StyledReactQuill
+              name="description"
+              value={formData.description}
+              onChange={(value) =>
+                handleInputChange({ target: { name: "description", value } })
+              }
+              modules={modules}
+            />
+
+              <S.Button onClick={handleWrite}>작성</S.Button>
+            
+          </div>
+        
       </S.PostBox>
     </div>
   );
@@ -142,10 +146,13 @@ const Write = () => {
 
 export default Write;
 
+
+
 const StyledReactQuill = styled(ReactQuill)`
+  
   position: relative;
 
-  .quill {
+  .quill{
     background-color: aliceblue;
     position: relative;
   }
@@ -165,7 +172,7 @@ const StyledReactQuill = styled(ReactQuill)`
     } */
   }
 
-  .ql-container {
+  .ql-container{
     position: fixed;
     margin-top: 100px;
     width: 60%;
@@ -174,6 +181,7 @@ const StyledReactQuill = styled(ReactQuill)`
     border: none;
   }
 
-  .ql-editor {
+  .ql-editor{
   }
+
 `;
