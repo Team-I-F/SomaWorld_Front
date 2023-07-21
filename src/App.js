@@ -8,10 +8,13 @@ import Table from "./pages/Table/Table";
 import Write from "./pages/Write/Write";
 import Search from "./pages/Search/Search";
 import SignupPage from "./pages/SignUp/Signup";
+import GlobalStyle from "./style/GlobalStyle";
 
 function App() {
   return (
     <BrowserRouter>
+      <GlobalStyle />
+
       <Routes>
         <Route path="/search" element={<Search />}></Route>
         <Route path="/login" element={<Login />}></Route>
