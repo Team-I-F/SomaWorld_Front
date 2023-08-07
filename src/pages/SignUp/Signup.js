@@ -3,6 +3,7 @@ import customAxios from "../../utils/axios/axios";
 import * as S from "./style";
 import arrowDown from "../../assets/arrow-down.png";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 const SignupPage = () => {
   const [userId, setUserId] = useState("");
@@ -73,7 +74,10 @@ const SignupPage = () => {
                 onChange={(e) => setNickname(e.target.value)}
               />
             </S.FormField>
-            <S.FormField>
+
+
+
+            {/* <S.FormField>
               <S.Label>아이디</S.Label>
               <S.InputWrapper>
                 <S.Input
@@ -85,7 +89,21 @@ const SignupPage = () => {
                 />
                 <S.InputButton>중복확인</S.InputButton>
               </S.InputWrapper>
-            </S.FormField>
+            </S.FormField> */}
+
+            <Test1>
+              <S.Label>아이디</S.Label>
+              <S.InputWrapper>
+                <S.Input
+                  id="id"
+                  placeholder="아이디"
+                  type="text"
+                  value={userId}
+                  onChange={(e) => setUserId(e.target.value)}
+                />
+                <S.InputButton>중복확인</S.InputButton>
+              </S.InputWrapper>
+            </Test1>
 
             <S.FormField>
               <S.Label>비밀번호</S.Label>
@@ -112,3 +130,19 @@ const SignupPage = () => {
 };
 
 export default SignupPage;
+
+
+const Test1 = styled.div`
+  position: relative;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  width: 330px;
+  height: 40px;
+  background-color: aliceblue;
+
+`
+
+const Test2 = styled.div`
+
+`
