@@ -8,7 +8,10 @@ import Table from "./pages/Table/Table";
 import Write from "./pages/Write/Write";
 import Search from "./pages/Search/Search";
 import SignupPage from "./pages/SignUp/Signup";
+<<<<<<< HEAD
 import GlobalStyle from "./style/GlobalStyle";
+=======
+>>>>>>> 792d867909bf8542aab170642137010a02a888d2
 
 function App() {
   return (

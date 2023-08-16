@@ -9,8 +9,11 @@
     "axios": "^1.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+<<<<<<< HEAD
     "react-query": "^3.39.3",
     "react-quill": "^2.0.0",
+=======
+>>>>>>> 792d867909bf8542aab170642137010a02a888d2
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.11.1",
     "react-scripts": "5.0.1",

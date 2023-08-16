@@ -13,6 +13,7 @@ export const posts = styled.div`
   flex-wrap: wrap;
   gap: 20px;
 `;
+<<<<<<< HEAD
 
 export const PostTabTitle = styled.p`
   font-size: 30px;
@@ -20,3 +21,5 @@ export const PostTabTitle = styled.p`
   display: flex;
   margin-left: 8%;
 `;
+=======
+>>>>>>> 792d867909bf8542aab170642137010a02a888d2
