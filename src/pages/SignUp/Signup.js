@@ -91,7 +91,7 @@ const SignupPage = () => {
               </S.InputWrapper>
             </S.FormField> */}
 
-            <Test1>
+            <div>
               <S.Label>아이디</S.Label>
               <S.InputWrapper>
                 <S.Input
@@ -101,9 +101,9 @@ const SignupPage = () => {
                   value={userId}
                   onChange={(e) => setUserId(e.target.value)}
                 />
-                <S.InputButton>중복확인</S.InputButton>
-              </S.InputWrapper>
-            </Test1>
+                </S.InputWrapper>
+                {/* <S.InputButton>중복확인</S.InputButton> */}
+            </div>
 
             <S.FormField>
               <S.Label>비밀번호</S.Label>
