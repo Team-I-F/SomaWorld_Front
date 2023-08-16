@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const PostTap = styled.div`
   width: 300px;
   height: 400px;
-  margin: 10px; //상 우 하 좌
+  margin: 10px;
   box-shadow: 0px 7px 29px 0px rgba(100, 100, 111, 0.2);
   border-radius: 10px;
 `;
