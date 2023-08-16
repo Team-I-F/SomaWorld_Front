@@ -1,5 +1,4 @@
 import styled from "styled-components";
-<<<<<<< HEAD
 
 export const Notice = styled.div`
   display: flex;
@@ -54,5 +53,3 @@ export const NoticeScript = styled.span`
   font-family: "Cafe24Ssurround", sans-serif;
   font-size: 50px;
 `;
-=======
->>>>>>> 792d867909bf8542aab170642137010a02a888d2

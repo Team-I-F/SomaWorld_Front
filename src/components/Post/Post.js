@@ -1,6 +1,5 @@
 import * as S from "./style";
 
-<<<<<<< HEAD
 const Post = ({ title, description, coverImg, userName }) => {
   return (
     <S.PostTap>
@@ -21,18 +20,6 @@ const Post = ({ title, description, coverImg, userName }) => {
         </S.Texts>
       </S.BottomBox>
     </S.PostTap>
-=======
-const Post = ({ table }) => {
-  return (
-    <div>
-      <h1>{table.tableID}</h1>
-      <h1>{table.title}</h1>
-      <h1>{table.created}</h1>
-      <h1>{table.views}</h1>
-      <h1>{table.userNickname}</h1>
-      <h1>{table.description}</h1>
-    </div>
->>>>>>> 792d867909bf8542aab170642137010a02a888d2
   );
 };
 

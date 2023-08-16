@@ -1,5 +1,4 @@
 import * as S from "./style";
-<<<<<<< HEAD
 
 function Notice() {
   return (
@@ -27,12 +26,3 @@ function Notice() {
 }
 
 export default Notice;
-=======
-// import arrow from "./assets/arrow.png";
-
-function NoticeBox() {
-  return <div>{/* <img src={arrow} alt="아" /> */}</div>;
-}
-
-export default NoticeBox;
->>>>>>> 792d867909bf8542aab170642137010a02a888d2
