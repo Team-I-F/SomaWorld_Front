@@ -73,18 +73,37 @@ const SignupPage = () => {
                 onChange={(e) => setNickname(e.target.value)}
               />
             </S.FormField>
+<<<<<<< HEAD
             <S.FormField>
               <S.Label>아이디</S.Label>
               <S.InputWrapper>
                 <S.Input
+=======
+
+            <S.FormField>
+              <S.Label>아이디</S.Label>
+              <S.InputWrapper>
+                <input
+                style={{
+                  fontSize: '18px',
+                  border: 'none',
+                  padding: '0px 40px',
+                  borderRadius: '35px'
+                }}
+>>>>>>> d31e799 (DESIGN :: 중복확인 버튼 야매로 넣음 걍)
                   id="id"
                   placeholder="아이디"
                   type="text"
                   value={userId}
                   onChange={(e) => setUserId(e.target.value)}
                 />
+<<<<<<< HEAD
                 <S.InputButton>중복확인</S.InputButton>
               </S.InputWrapper>
+=======
+                  <S.InputButton>중복확인</S.InputButton>
+                </S.InputWrapper>
+>>>>>>> d31e799 (DESIGN :: 중복확인 버튼 야매로 넣음 걍)
             </S.FormField>
 
             <S.FormField>
