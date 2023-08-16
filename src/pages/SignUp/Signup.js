@@ -75,35 +75,25 @@ const SignupPage = () => {
               />
             </S.FormField>
 
-
-
-            {/* <S.FormField>
+            <S.FormField>
               <S.Label>아이디</S.Label>
               <S.InputWrapper>
-                <S.Input
+                <input
+                style={{
+                  fontSize: '18px',
+                  border: 'none',
+                  padding: '0px 40px',
+                  borderRadius: '35px'
+                }}
                   id="id"
                   placeholder="아이디"
                   type="text"
                   value={userId}
                   onChange={(e) => setUserId(e.target.value)}
                 />
-                <S.InputButton>중복확인</S.InputButton>
-              </S.InputWrapper>
-            </S.FormField> */}
-
-            <div>
-              <S.Label>아이디</S.Label>
-              <S.InputWrapper>
-                <S.Input
-                  id="id"
-                  placeholder="아이디"
-                  type="text"
-                  value={userId}
-                  onChange={(e) => setUserId(e.target.value)}
-                />
+                  <S.InputButton>중복확인</S.InputButton>
                 </S.InputWrapper>
-                {/* <S.InputButton>중복확인</S.InputButton> */}
-            </div>
+            </S.FormField>
 
             <S.FormField>
               <S.Label>비밀번호</S.Label>
