@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-<<<<<<< HEAD
 import { useEffect, useState } from "react";
 import { getboardList } from "../../utils/api/board";
 
@@ -21,27 +20,6 @@ const Boards = () => {
       console.log(error);
     });
     
-=======
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getboardList } from "../../utils/api/board";
-import { setBoards } from "../../utils/redux/board";
-
-const Boards = () => {
-  const dispatch = useDispatch();
-  const boards = useSelector((state) => state.boardsReducer.boards);
-
-  function initialBoards() {
-    const response = getboardList();
-    response
-      .then(function (data) {
-        dispatch(setBoards(data.data));
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
->>>>>>> 792d867909bf8542aab170642137010a02a888d2
   }
 
   useEffect(() => {
