@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getgalleryList } from "../../utils/api/board";
+import axios from "axios";
 
 const Gallerys = () => {
 
@@ -8,17 +9,23 @@ const Gallerys = () => {
 
   function initialgallerys() {
     const response = getgalleryList();
+    
+    
+
 
     setGallerys(getgalleryList());
+    // axios.get("http://10.150.149.25:3000/board").then((res) => {
+    //   console.log('data',res.data);
+    // })
 
-    response
-    .then(function (data) {
-      setGallerys(data.data);
-      console.log(response);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+    // response
+    // .then(function (data) {
+    //   setGallerys(data.data);
+    //   console.log(response);
+    // })
+    // .catch((error) => {
+    //   console.log(error);
+    // });
     
   }
 

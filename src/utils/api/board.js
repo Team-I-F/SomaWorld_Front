@@ -2,6 +2,7 @@ import { customAxios } from "../axios/axios";
 
 /** 갤러리들 받아옴*/
 export const getgalleryList = async () => {
+  console.log(customAxios.baseURL);
   return await customAxios.get(`/board`);
 };
 
