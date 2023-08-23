@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getboardList } from "../../utils/api/board";
+import { getgalleryList } from "../../utils/api/board";
 
 const Gallerys = () => {
 
   const [gallerys, setGallerys] = useState([]);
 
   function initialgallerys() {
-    const response = getboardList();
+    const response = getgalleryList();
 
-    setGallerys(getboardList());
+    setGallerys(getgalleryList());
 
     response
     .then(function (data) {
