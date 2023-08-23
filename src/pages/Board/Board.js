@@ -25,6 +25,7 @@ const Board = () => {
 
   useEffect(() => {
     initialBoard();
+    console.log(board);
   }, []);
 
   return (
@@ -34,7 +35,7 @@ const Board = () => {
 
       {board &&
         board.map((board) => (
-          <Link to={`/gallery/${boardID}/${board.tableID}`}>
+          <Link to={`/gallery/${boardID}/${board.tableID}`} key={board.tableID}>
             <div>
               <h1>{board.tableID}</h1>
               <h1>{board.title}</h1>

@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login/Login";
 import Main from "./pages/Main/Main";
-import Boards from "./pages/Boards/Boards";
+import Boards from "./pages/Gallerys/Boards";
 import Board from "./pages/Board/Board";
 import Table from "./pages/Table/Table";
 import Write from "./pages/Write/Write";

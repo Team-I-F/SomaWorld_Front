@@ -34,10 +34,10 @@ const Boards = () => {
         <h1>갤러리들</h1>
         {boards && boards.length > 0 ? (
           boards.map((board) => (
-            <Link to={`/gallery/${board.tableInfoId}`}>
-              <div key={board.tableInfoId}>
-                <h1>{board.tableInfoId}</h1>
-                <p>{board.tableName}</p>
+            <Link to={`/gallery/${board.galleryId}`}>
+              <div key={board.galleryId}>
+                <h1>{board.galleryId}</h1>
+                <p>{board.galleryName}</p>
               </div>
             </Link>
           ))
