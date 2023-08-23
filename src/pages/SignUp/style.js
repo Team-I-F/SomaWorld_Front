@@ -43,14 +43,6 @@ export const FormField = styled.div`
   align-items: center;
 `;
 
-export const Test = styled.div`
-  position: absolute;
-
-  width: 50px;
-  height: 50px;
-  background-color: aqua;
-`;
-
 export const Label = styled.div`
   display: flex;
   align-items: center;
@@ -63,15 +55,14 @@ export const Label = styled.div`
 `;
 
 export const InputWrapper = styled.div`
-  position: relative;
-  flex-grow: 1;
-
-  border: 0;
-  width: 100%;
-  height: 100%;
-  padding: 10px 20px;
-  background: white;
-  border-radius: 3px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+  width: 480px;
+  height: 50px;
+  border: 1px solid #ccc;
+  border-radius: 35px;
+  padding: 5px 0px;
 `;
 
 export const Input = styled.input`
@@ -84,13 +75,12 @@ export const Input = styled.input`
 `;
 
 export const InputButton = styled.button`
-
   font-size: 14px;
   font-weight: 700;
-
-  /* top: 50%;
-  right: 40px; */
-  transform: translateY(-50%);
+  margin-right: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  margin-right: 10px;
   width: 80px;
   height: 40px;
   border: none;
