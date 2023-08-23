@@ -2,18 +2,18 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getboardList } from "../../utils/api/board";
 
-const Boards = () => {
+const Gallerys = () => {
 
-  const [boards, setBoards] = useState([]);
+  const [gallerys, setGallerys] = useState([]);
 
-  function initialBoards() {
+  function initialgallerys() {
     const response = getboardList();
 
-    setBoards(getboardList());
+    setGallerys(getboardList());
 
     response
     .then(function (data) {
-      setBoards(data.data);
+      setGallerys(data.data);
       console.log(response);
     })
     .catch((error) => {
@@ -23,17 +23,17 @@ const Boards = () => {
   }
 
   useEffect(() => {
-    initialBoards();
+    initialgallerys();
   }, []);
 
-  console.log(boards);
+  console.log(gallerys);
 
   return (
     <div>
       <div>
         <h1>갤러리들</h1>
-        {boards && boards.length > 0 ? (
-          boards.map((board) => (
+        {gallerys && gallerys.length > 0 ? (
+          gallerys.map((board) => (
             <Link to={`/gallery/${board.galleryId}`}>
               <div key={board.galleryId}>
                 <h1>{board.galleryId}</h1>
@@ -49,4 +49,4 @@ const Boards = () => {
   );
 };
 
-export default Boards;
+export default Gallerys;
