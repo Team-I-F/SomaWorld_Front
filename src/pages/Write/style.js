@@ -7,3 +7,7 @@ export const PostBox = styled.div`
 export const Button = styled.button`
   margin: 10px 0;
 `;
+
+export const Input = styled.input`
+
+`;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createPost } from "../../utils/api/board";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -52,6 +52,7 @@ const modules = {
   }
 }
 
+
 const Write = () => {
   const { boardID } = useParams();
   const navigate = useNavigate();
@@ -62,16 +63,18 @@ const Write = () => {
     description: "",
   });
 
+  // useEffect(()=> console.log(boardID), [])
+
   const handleWrite = async () => {
     try {
       const data = {
-        tableInfoId: boardID,
+        galleryId: boardID,
         ...formData,
       };
       const createdPost = await createPost(data);
       console.log("게시물 작성 완료:", createdPost);
 
-      // navigate(`/${boardID}`);
+      // navigate(`/${galleryId}`);
     } catch (error) {
       console.log("게시물 작성 실패:", error.message);
     }
@@ -90,7 +93,7 @@ const Write = () => {
       <S.PostBox>
         
           <div>
-            {/* <S.Input
+            <S.Input
               type="text"
               name="title"
               value={formData.title}
@@ -103,7 +106,7 @@ const Write = () => {
               value={formData.userNickname}
               onChange={handleInputChange}
               placeholder="작성자"
-            /> */}
+            />
             {/* <Textarea
               name="description"
               value={formData.description}

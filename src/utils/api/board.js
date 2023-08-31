@@ -2,7 +2,6 @@ import { customAxios } from "../axios/axios";
 
 /** 갤러리들 받아옴*/
 export const getgalleryList = async () => {
-  console.log(customAxios.baseURL);
   return await customAxios.get(`/board`);
 };
 
@@ -20,7 +19,7 @@ export const getTable = async (boardID, tableID) => {
 export const createPost = async (data) => {
   try {
     console.log(data, "dd");
-    const response = await customAxios.post("/board/insert", data);
+    const response = await customAxios.post("/board", data);
     return response.data;
 
     // 성공적으로 작성된 게시물의 응답 데이터를 반환

@@ -9,6 +9,7 @@ import Write from "./pages/Write/Write";
 import Search from "./pages/Search/Search";
 import SignupPage from "./pages/SignUp/Signup";
 import GlobalStyle from "./style/GlobalStyle";
+import SearchBoardPage from "./pages/SearchBoard/SearchBoard";
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<SignupPage />}></Route>
         <Route path="/gallery" element={<Gallerys />}></Route>
+        
+        <Route path="/search/:galleryId/:titles" element={<SearchBoardPage />}></Route>
+        
         <Route path="/gallery/:boardID" element={<Board />}></Route>
         <Route path="/:boardID/write" element={<Write />}></Route>
         <Route path="/gallery/:boardID/:tableID" element={<Table />}></Route>
