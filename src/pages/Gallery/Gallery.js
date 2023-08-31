@@ -1,57 +1,48 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getgallery } from "../../utils/api/board";
 import { Link, useParams } from "react-router-dom";
 
 const Gallery = () => {
-  const { galleryID } = useParams();
+  const { boardID } = useParams();
 
-  const [gallery, setGallery] = useState([])
+  const [galleryList, setGalleryList] = useState([])
 
-  function initialgallery() {
-  
-   const response = getgallery(galleryID);
+  function fetchGallery() {
+    const response = getgallery(boardID);
 
-   response
-   .then(function (data) {
-     setGallery(data.data);
-     console.log(gallery);
-   })
-   .catch((error) => {
-     console.log(error);
-   });
-
-  
+    response
+      .then(function (data) {
+        setGalleryList(data.data);
+        console.log(data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   useEffect(() => {
-    initialgallery();
-    console.log(gallery);
-  }, []);
+    fetchGallery();
+    console.log(boardID)
+  }, [boardID]); // Dependency 배열에 boardID 추가하여 boardID가 변경될 때마다 useEffect 호출
 
   return (
     <div>
       <h1>갤러리</h1>
 
-
-      {gallery &&
-        gallery.map((gallery) => (
-          <Link to={`/gallery/${galleryID}/${gallery.tableID}`} key={gallery.tableID}>
+      {galleryList &&
+        galleryList.map((item) => (
+          <Link to={`/gallery/${boardID}/${item.tableID}`} key={item.tableID}>
             <div>
-              <h1>{gallery.tableID}</h1>
-              <h1>{gallery.title}</h1>
-              <span>{gallery.views}</span>
-              <p>{gallery.created}</p>
-              <p>{gallery.userNickname}</p>
+              <h1>{item.tableID}</h1>
+              <h1>{item.title}</h1>
+              <span>{item.views}</span>
+              <p>{item.created}</p>
+              <p>{item.userNickname}</p>
             </div>
           </Link>
         ))}
-
-
     </div>
   );
 };
 
 export default Gallery;
-
-
-
