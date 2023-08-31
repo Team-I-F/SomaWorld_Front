@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { getgallery } from "../../utils/api/board";
+
 import { Link, useParams } from "react-router-dom";
+import { deleteGallery } from "../../utils/api/gallery";
 
 const Gallery = () => {
   const { boardID } = useParams();
@@ -9,7 +11,6 @@ const Gallery = () => {
 
   function fetchGallery() {
     const response = getgallery(boardID);
-
     response
       .then(function (data) {
         setGalleryList(data.data);
@@ -20,15 +21,28 @@ const Gallery = () => {
       });
   }
 
+  const handleDelete = async () => {
+    try {
+      const deletedGall = await deleteGallery(boardID);
+      console.log("갤러리 삭제 완료:", deletedGall);
+
+    } catch (error) {
+      console.log("갤러리  실패:", error.message);
+    }
+  };
+
   useEffect(() => {
     fetchGallery();
     console.log(boardID)
-  }, [boardID]); // Dependency 배열에 boardID 추가하여 boardID가 변경될 때마다 useEffect 호출
+  }, [boardID]);
 
   return (
     <div>
       <h1>갤러리</h1>
-
+      <div>
+        삭제할거~
+        <button onClick={handleDelete}>갤삭버튼쓰</button>
+      </div>
       {galleryList &&
         galleryList.map((item) => (
           <Link to={`/gallery/${boardID}/${item.tableID}`} key={item.tableID}>
