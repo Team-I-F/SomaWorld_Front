@@ -13,6 +13,12 @@ export const createGallery = async (data) => {
     }
   };
   
+
+export const changeGallery = async (galleryId, data) => {
+    return await customAxios.put(`/board/gallery/${galleryId}`, data);
+};
+  
+
 export const deleteGallery = async (galleryId) => {
     return await customAxios.delete(`/board/gallery/${galleryId}`);
 };

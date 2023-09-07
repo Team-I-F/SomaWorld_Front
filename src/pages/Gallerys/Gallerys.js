@@ -9,7 +9,7 @@ const Gallerys = () => {
     galleryName: ""
   });
 
-  const handleWrite = async () => {
+  const handleGallWrite = async () => {
     try {
       const data = {
         ...createGallData,
@@ -66,7 +66,7 @@ const Gallerys = () => {
               onChange={handleInputChange}
               placeholder="갤러리이름"
             /> 
-            <button onClick={handleWrite}>갤러리 생성!</button>
+            <button onClick={handleGallWrite}>갤러리 생성!</button>
         </div>
         {gallerys && gallerys.length > 0 ? (
           gallerys.map((board) => (

@@ -2,11 +2,15 @@ import React, { useEffect, useState } from "react";
 import { getgallery } from "../../utils/api/board";
 
 import { Link, useParams } from "react-router-dom";
-import { deleteGallery } from "../../utils/api/gallery";
+import { changeGallery, deleteGallery } from "../../utils/api/gallery";
 
 const Gallery = () => {
   const { boardID } = useParams();
 
+
+  const [changeGallData, setChangeGalldata] = useState({
+    galleryName: ""
+  });
   const [galleryList, setGalleryList] = useState([])
 
   function fetchGallery() {
@@ -21,13 +25,33 @@ const Gallery = () => {
       });
   }
 
-  const handleDelete = async () => {
+  const handleGalldelete = async () => {
     try {
       const deletedGall = await deleteGallery(boardID);
       console.log("갤러리 삭제 완료:", deletedGall);
 
     } catch (error) {
       console.log("갤러리  실패:", error.message);
+    }
+  };
+
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setChangeGalldata((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+    console.log(changeGallData)
+  };
+
+  const handleGallChange = async () => {
+    try {
+      const changedGall = await changeGallery(boardID, changeGallData);
+      console.log("갤러리 수정 완료:", changedGall);
+
+    } catch (error) {
+      console.log("갤러리 수정 실패:", error.message);
     }
   };
 
@@ -41,7 +65,16 @@ const Gallery = () => {
       <h1>갤러리</h1>
       <div>
         삭제할거~
-        <button onClick={handleDelete}>갤삭버튼쓰</button>
+        <input
+          type="text"
+          name="galleryName"
+          value={changeGallData.galleryName}
+          onChange={handleInputChange}
+          placeholder="수정할거임갤러리이름~"
+        />
+
+        <button onClick={handleGallChange}>갤수정버튼쓰</button>
+        <button onClick={handleGalldelete}>갤삭버튼쓰</button>
       </div>
       {galleryList &&
         galleryList.map((item) => (
