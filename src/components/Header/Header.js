@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Button from "./Button/Button";
 import styled from "styled-components";
 
@@ -12,18 +13,20 @@ function Header() {
           
           {/* 로그인 안한 경우 */}
 
-          {/* <Button name={"회원가입"} />
-          <Button name={"로그인"}/> */}
-
+          <Link to={`/signup`} style={{ textDecoration: "none" }}>
+            <Button name={"회원가입"} />    
+          </Link>
+          <Link to={`/login`} style={{ textDecoration: "none" }}>
+            <Button name={"로그인"}/>
+          </Link>
 
           {/* 로그인 한 경우 */}
-
-          
-          <Search>
+ 
+          {/* <Search>
             <SearchImg src="assets/img.png"/>
             <SearchInput type="text" />
           </Search>
-          <Button name={"새 글 작성"}/>
+          <Button name={"새 글 작성"}/> */}
 
         </div>
 
