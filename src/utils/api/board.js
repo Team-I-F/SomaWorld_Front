@@ -1,13 +1,13 @@
 import { customAxios } from "../axios/axios";
 
 /** 갤러리들 받아옴*/
-export const getboardList = async () => {
+export const getgalleryList = async () => {
   return await customAxios.get(`/board`);
 };
 
 /** 갤러리 받아옴 안엔 게시글들이!*/
-export const getboard = async (boardID) => {
-  return await customAxios.get(`/board/${boardID}`);
+export const getgallery = async (galleryId) => {
+  return await customAxios.get(`/board/${galleryId}`);
 };
 
 /** 갤러리안의 글 받아옴*/
