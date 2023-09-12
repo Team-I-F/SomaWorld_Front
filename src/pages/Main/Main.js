@@ -11,7 +11,11 @@ const MainPage = () => {
   return (
     <div>
       <Header />
+
+      <div style={{paddingTop: '100px'}}>
+
       <Notice />
+
       <S.PostTabTitle
         style={{ fontFamily: "Cafe24Ssurround", fontWeight: "600" }}
       >
@@ -39,6 +43,7 @@ const MainPage = () => {
         </div>
       </div>
 
+      </div>
       <Footer />
     </div>
   );

@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 function Header() {
   return (
-    <div>
       <HeadBox>
         <HeadInBox>
 
@@ -37,8 +36,6 @@ function Header() {
           <Button name={"회원가입"} />
         </Buttons> */}
       </HeadBox>
-      <line></line>
-    </div>
   );
 }
 
@@ -52,8 +49,12 @@ const HeadInBox = styled.div`
 `
 
 const HeadBox = styled.div`
+  width: 100%;
   padding: 10px;
   border-bottom: 1px solid #B0B0B0;
+  position: fixed;
+  z-index: 1;
+  background-color: white;
 `;
 
 const HeadTitle = styled.span`
