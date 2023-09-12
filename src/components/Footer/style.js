@@ -15,7 +15,6 @@ export const Footer = styled.div`
 
 export const FooterImg = styled.img`
   width: 15px;
-  height: 20px;
-  margin-left: 10px;
+  height: 15px;
   margin-right: 10px;
 `;
