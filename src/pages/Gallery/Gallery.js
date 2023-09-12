@@ -11,6 +11,7 @@ const Gallery = () => {
   const [changeGallData, setChangeGalldata] = useState({
     galleryName: ""
   });
+
   const [galleryList, setGalleryList] = useState([])
 
   function fetchGallery() {

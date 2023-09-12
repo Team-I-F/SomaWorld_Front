@@ -3,16 +3,37 @@ import Post from "../../components/Post/Post";
 import Notice from "../../components/Notice/Notice";
 import Footer from "../../components/Footer/Footer";
 
-import PostData from "./dummy";
-
 import * as S from "./style";
+import { useEffect, useState } from "react";
+import { getgalleryList } from "../../utils/api/board";
 
 const MainPage = () => {
+
+  const [galleryList, setGalleryList] = useState([])
+
+  function fetchGallery() {
+    const response = getgalleryList();
+    response
+      .then(function (data) {
+        setGalleryList(data.data);
+        console.log(data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  useEffect(() => {
+    fetchGallery();
+    console.log(galleryList)
+  }, []);  
+
+
   return (
     <div>
       <Header />
 
-      <div style={{paddingTop: '100px'}}>
+      <div style={{ paddingTop: '100px'}}>
 
       <Notice />
 
@@ -32,13 +53,18 @@ const MainPage = () => {
             width: "1300px",
           }}
         >
-          {PostData.map((item) => (
+          {galleryList.map((item) => (
             <Post
-              title={item.title}
-              description={item.description}
-              coverImg={item.coverImg}
-              userName={item.userName}
+              title={item.galleryName}
+              // coverImg={item.coverImg}
             />
+
+            // <Post
+            //   title={item.title}
+            //   description={item.description}
+            //   // coverImg={item.coverImg}
+            //   userName={"item.userName"}
+            // />
           ))}
         </div>
       </div>
