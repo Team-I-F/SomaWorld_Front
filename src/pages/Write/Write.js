@@ -5,6 +5,9 @@ import styled from "styled-components";
 import * as S from "./style"
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { useEffect } from "react";
+import { loginCheck } from "../../services/auth/api";
+import { loginCheckStatus } from "../../utils/api/user";
 
 
 
@@ -54,13 +57,21 @@ const modules = {
 
 const Write = () => {
   const { boardID } = useParams();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false); 
   const [formData, setFormData] = useState({
     title: "",
     userNickname: "",
     description: "",
   });
+
+
+
+  useEffect(() => {
+  }, []);
+
+
 
   const handleWrite = async () => {
     try {
@@ -90,27 +101,22 @@ const Write = () => {
       <S.PostBox>
         
           <div>
-            {/* <S.Input
+            <input
               type="text"
               name="title"
               value={formData.title}
               onChange={handleInputChange}
               placeholder="제목"
             />
-            <S.Input
+
+            <input
               type="text"
               name="userNickname"
               value={formData.userNickname}
               onChange={handleInputChange}
               placeholder="작성자"
-            /> */}
-            {/* <Textarea
-              name="description"
-              value={formData.description}
-              onChange={handleInputChange}
-              placeholder="본문"
-            ></Textarea> */}
-
+            /> 
+          
             <StyledReactQuill
               name="description"
               value={formData.description}

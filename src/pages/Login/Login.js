@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as S from "./style";
 import { Link } from "react-router-dom";
 import arrowDown from "../../assets/arrow-down.png";
 import { useLoginMutation } from "../../services/auth/mutation";
+import { loginCheckStatus } from "../../utils/api/user";
+import { loginCheck } from "../../services/auth/api";
 
 const Login = () => {
   const [loginUserData, setLoginUserData] = useState({
@@ -11,11 +13,26 @@ const Login = () => {
   });
 
   const loginMutate = useLoginMutation(loginUserData);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleLoginUserData = (e) => {
     const { name, value } = e.target;
     setLoginUserData({ ...loginUserData, [name]: value });
     console.log(loginUserData);
+  };
+
+  useEffect(() => {
+    // 페이지가 로드될 때 로그인 상태를 확인하도록 설정
+    checkLoginStatus();
+  }, []);
+
+  const checkLoginStatus = async () => {
+    try {
+      const response = await loginCheck();
+      // setIsLoggedIn(response);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -59,11 +76,29 @@ const Login = () => {
             </div>
 
             <S.ButtonContainer>
-              <S.Button type="submit" onClick={() => loginMutate.mutate()}>
+              <S.Button
+                type="submit"
+                onClick={() => {
+                  loginMutate.mutate();
+                }}
+              >
                 로그인
               </S.Button>
             </S.ButtonContainer>
           </S.LoginContainer>
+
+          <div>
+            {isLoggedIn ? (
+              <p>로그인 됐냐?</p>
+            ) : (
+              <div
+                onClick={()=>checkLoginStatus()}
+                style={{ backgroundColor: "red", cursor: "pointer" }}
+              >
+                로그인 확인
+              </div>
+            )}
+          </div>
         </S.Frame>
       </S.LoginForm>
     </S.Container>
