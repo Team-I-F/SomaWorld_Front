@@ -5,7 +5,7 @@ function Header() {
   return (
     <div>
       <HeadBox>
-        <BokBut>
+        <HeadInBox>
 
         <HeadTitle>SomaWorld</HeadTitle>
 
@@ -13,20 +13,22 @@ function Header() {
           
           {/* 로그인 안한 경우 */}
 
-          <Button name={"회원가입"} />
-          <Button name={"로그인"}/>
+          {/* <Button name={"회원가입"} />
+          <Button name={"로그인"}/> */}
 
 
           {/* 로그인 한 경우 */}
+
           
-          {/* <Search>
-            <SearchInput type="text" placeholder="검색어 입력" />
-            <SearchImg src="assets/img.png" style={{color: 'red'}}/>
-          </Search> */}
+          <Search>
+            <SearchImg src="assets/img.png"/>
+            <SearchInput type="text" />
+          </Search>
+          <Button name={"새 글 작성"}/>
 
         </div>
 
-        </BokBut>
+        </HeadInBox>
 
 
         {/* <Buttons>
@@ -42,7 +44,7 @@ function Header() {
 
 export default Header;
 
-const BokBut = styled.div`
+const HeadInBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -57,27 +59,31 @@ const HeadBox = styled.div`
 const HeadTitle = styled.span`
   font-size: 35px;
   line-height: 44px;
-  font-style: normal;
-  margin: 5px 0px 0px 40px;
   font-weight: bold;
-  font-family: Cafe24Ssurround;
 `;
 
 const Search = styled.div`
   position: relative;
-  width: 200px;
-  background-color: antiquewhite;
+  width: 300px;
 `;
 
-const SearchInput = styled.div`
+const SearchInput = styled.input`
   width: 100%;
-  border: 1px solid #bbb;
-  border-radius: 8px;
+  border: none;
+  border-radius: 100px;
   padding: 10px 12px;
   font-size: 14px;
-
+  background-color: #F3F3F3;
 `;
 
-const SearchImg = styled.div`
-  background-color: aliceblue;
+const SearchImg = styled.img`
+  
+  width: 30px;
+  height: 30px;
+  
+  position : absolute;
+
+  top: 5px;
+  left: 15px;
+
 `;

@@ -19,6 +19,14 @@ const StyledButton = styled.span`
     `
       border: none;
     `}
+
+  ${({name}) =>
+    name === "새 글 작성" &&
+    `
+      color: #95B9FF;
+      border: 2px solid #95B9FF;
+      margin: auto 50px;
+    `}
 `;
 
 function Button({ name }) {
