@@ -57,6 +57,7 @@ const HeadBox = styled.div`
   border-bottom: 1px solid #B0B0B0;
   position: fixed;
   z-index: 1;
+  background-color: white;
 `;
 
 const HeadTitle = styled.span`

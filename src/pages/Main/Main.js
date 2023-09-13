@@ -46,11 +46,12 @@ const MainPage = () => {
             display: "flex",
             flexWrap: "wrap",
             flexDirection: "row",
-            justifyContent: 'space-between'
+            gap: '30px'
           }}
         >
 
-
+          {/*
+            이건 걍.. 서버 꺼져서
           {postList.map((item) => (
             <Post
               title={item.title}
@@ -59,8 +60,14 @@ const MainPage = () => {
               userName={item.userNickname}
               views={item.views}
             />
-          ))}
+          ))} */}
 
+          <Post
+              title={"히히"}
+              // coverImg={item.coverImg}
+              userName={"ㅋ"}
+              views={"100"}
+            />
 
         </div>
       </div>

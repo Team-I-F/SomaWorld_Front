@@ -57,7 +57,7 @@ const modules = {
 
 const Write = () => {
   const { boardID } = useParams();
-
+  
   const [isLoggedIn, setIsLoggedIn] = useState(false); 
   const [formData, setFormData] = useState({
     title: "",
@@ -75,9 +75,10 @@ const Write = () => {
   const handleWrite = async () => {
     try {
       const data = {
-        tableInfoId: boardID,
+        galleryId: boardID,
         ...formData,
       };
+      console.log("지금 입력한 데이터", data);
       const createdPost = await createPost(data);
       console.log("게시물 작성 완료:", createdPost);
 
