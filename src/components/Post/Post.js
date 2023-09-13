@@ -65,7 +65,7 @@ const Title = styled.div`
 `;
 
 const Script = styled.div`
-  margin: 5px auto;
+  margin: 10px auto;
   overflow: hidden;
   display: -webkit-box; 
   -webkit-line-clamp: 3;
