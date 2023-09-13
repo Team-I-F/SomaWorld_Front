@@ -53,11 +53,10 @@ const HeadInBox = styled.div`
 
 const HeadBox = styled.div`
   width: 100%;
-  padding: 10px;
+  padding: 10px 0px;
   border-bottom: 1px solid #B0B0B0;
   position: fixed;
   z-index: 1;
-  background-color: white;
 `;
 
 const HeadTitle = styled.span`

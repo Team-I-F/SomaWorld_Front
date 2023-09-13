@@ -3,20 +3,19 @@ import Post from "../../components/Post/Post";
 import Notice from "../../components/Notice/Notice";
 import Footer from "../../components/Footer/Footer";
 
-import * as S from "./style";
 import { useEffect, useState } from "react";
-import { getgalleryList } from "../../utils/api/board";
+import { getgallery } from "../../utils/api/board";
+import styled from "styled-components";
 
 const MainPage = () => {
 
-  const [galleryList, setGalleryList] = useState([])
+  const [postList, setPostList] = useState([])
 
   function fetchGallery() {
-    const response = getgalleryList();
+    const response = getgallery(1);
     response
       .then(function (data) {
-        setGalleryList(data.data);
-        console.log(data.data);
+        setPostList(data.data);
       })
       .catch((error) => {
         console.log(error);
@@ -25,7 +24,7 @@ const MainPage = () => {
 
   useEffect(() => {
     fetchGallery();
-    console.log(galleryList)
+    console.log(postList)
   }, []);  
 
 
@@ -33,39 +32,36 @@ const MainPage = () => {
     <div>
       <Header />
 
-      <div style={{ paddingTop: '100px'}}>
+      <div style={{ paddingTop: '100px', margin: 'auto 200px'}}>
 
       <Notice />
 
-      <S.PostTabTitle
-        style={{ fontFamily: "Cafe24Ssurround", fontWeight: "600" }}
-      >
+      <PostTabTitle>
         소마월드와 함께 다양한 이야기를 해보세요.
-      </S.PostTabTitle>
+      </PostTabTitle>
 
-      <div style={{ justifyContent: "center" }}>
+      <div style={{ justifyContent: "center"}}>
         <div
           style={{
-            margin: "0px auto",
             display: "flex",
             flexWrap: "wrap",
             flexDirection: "row",
-            width: "1300px",
+            justifyContent: 'space-between'
           }}
         >
-          {galleryList.map((item) => (
-            <Post
-              title={item.galleryName}
-              // coverImg={item.coverImg}
-            />
 
-            // <Post
-            //   title={item.title}
-            //   description={item.description}
-            //   // coverImg={item.coverImg}
-            //   userName={"item.userName"}
-            // />
+
+          {postList.map((item) => (
+            <Post
+              title={item.title}
+              description={item.description}
+              // coverImg={item.coverImg}
+              userName={item.userNickname}
+              views={item.views}
+            />
           ))}
+
+
         </div>
       </div>
 
@@ -76,3 +72,9 @@ const MainPage = () => {
 };
 
 export default MainPage;
+
+const PostTabTitle = styled.p`
+  font-size: 30px;
+  display: flex;
+  font-weight: 600
+`;

@@ -19,7 +19,7 @@ export const getTable = async (boardID, tableID) => {
 export const createPost = async (data) => {
   try {
     console.log(data, "dd");
-    const response = await customAxios.post("/board/insert", data);
+    const response = await customAxios.post("/board/gallery", data);
     return response.data;
 
     // 성공적으로 작성된 게시물의 응답 데이터를 반환

@@ -57,7 +57,6 @@ const modules = {
 
 const Write = () => {
   const { boardID } = useParams();
-  // const navigate = useNavigate();
 
   const [isLoggedIn, setIsLoggedIn] = useState(false); 
   const [formData, setFormData] = useState({
