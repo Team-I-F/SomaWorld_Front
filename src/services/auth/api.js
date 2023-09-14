@@ -13,7 +13,8 @@ export const signupUser = async (signupUserData) => {
 export const loginCheck = async () => {
   try {
     const response = await customAxios.get("/user/loginCheck");
-    return response.data;
+    console.log(response)
+    return response;
   } catch (error) {
     console.log(error);
     throw new Error("로그인에 실패했습니다.");
