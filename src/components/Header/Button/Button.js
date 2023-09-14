@@ -25,7 +25,6 @@ const StyledButton = styled.span`
     `
       color: #95B9FF;
       border: 2px solid #95B9FF;
-      margin: auto 50px;
     `}
 `;
 
