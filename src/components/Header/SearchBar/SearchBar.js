@@ -36,7 +36,7 @@ function SearchBar() {
   const Search = styled.div`
   position: relative;
   display: flex;
-  width: 550px;
+  width: 700px;
   border-radius: 5px;
   padding: 12px 5px;
   background-color: #f3f3f3;

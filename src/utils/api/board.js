@@ -20,7 +20,7 @@ export const createPost = async (data) => {
   try {
     console.log(data, "dd");
     const response = await customAxios.post("/board", data);
-    return response.data;
+    return response.data;  
 
   } catch (error) {
     console.log(error);

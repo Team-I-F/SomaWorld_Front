@@ -6,8 +6,10 @@ import SearchBar from "./SearchBar/SearchBar";
 
 function Header() {
   return (
-    <HeadBox>
-      <HeadInBox>
+    <HeadContainer>
+
+
+        <HeadBox>
         <HeadTitle>SomaWorld</HeadTitle>
 
         <SearchBar/>    
@@ -15,37 +17,46 @@ function Header() {
 
         <div style={{ display: "flex", alignItems: "center" }}>
           {/* 로그인 안한 경우 */}
-          {/* <Link to={`/signup`} style={{ textDecoration: "none" }}>
+          
+          <Link to={`/signup`} style={{ textDecoration: "none" }}>
             <Button name={"회원가입"} />
           </Link>
           <Link to={`/login`} style={{ textDecoration: "none" }}>
             <Button name={"로그인"} />
-          </Link> */}
+          </Link>
 
-          {/* 로그인 한 경우 */}
-          <Button name={"새 글 작성"} />
+        {/* 로그인 한 경우 */}
+        {/* <Button name={"새 글 작성"} /> */}
+        
         </div>
-      </HeadInBox>
-    </HeadBox>
+        </HeadBox>
+
+    </HeadContainer>
   );
 }
 
 export default Header;
 
-const HeadInBox = styled.div`
+const HeadContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  position: fixed;
+  width: 100%;  
+  height: 80px;
+  border-bottom: 1px solid #b0b0b0;
+  justify-content: center;
   align-items: center;
-  margin: auto 200px;
+  z-index: 1;
+  background-color: white;
 `;
 
 const HeadBox = styled.div`
-  width: 100%;
-  padding: 10px 0px;
-  border-bottom: 1px solid #b0b0b0;
+  width: calc(100% - 400px);
+  display: flex;
   position: fixed;
-  z-index: 1;
-  background-color: white;
+  height: 80px;
+  border-bottom: 1px solid #b0b0b0;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const HeadTitle = styled.span`

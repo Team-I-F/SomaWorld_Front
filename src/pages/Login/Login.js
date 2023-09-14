@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import * as S from "./style";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import arrowDown from "../../assets/arrow-down.png";
 import { useLoginMutation } from "../../services/auth/mutation";
-import { loginCheckStatus } from "../../utils/api/user";
 import { loginCheck } from "../../services/auth/api";
 
 const Login = () => {
@@ -12,13 +11,13 @@ const Login = () => {
     pw: "",
   });
 
+  const navigate = useNavigate();
   const loginMutate = useLoginMutation(loginUserData);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleLoginUserData = (e) => {
     const { name, value } = e.target;
     setLoginUserData({ ...loginUserData, [name]: value });
-    console.log(loginUserData);
   };
 
   useEffect(() => {
@@ -29,10 +28,15 @@ const Login = () => {
   const checkLoginStatus = async () => {
     try {
       const response = await loginCheck();
-      // setIsLoggedIn(response);
+      setIsLoggedIn(response);
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const handleLogin = () => {
+    loginMutate.mutate();
+    navigate("/");
   };
 
   return (
@@ -77,10 +81,8 @@ const Login = () => {
 
             <S.ButtonContainer>
               <S.Button
-                type="submit"
-                onClick={() => {
-                  loginMutate.mutate();
-                }}
+                type="button"
+                onClick={handleLogin}
               >
                 로그인
               </S.Button>
@@ -92,7 +94,7 @@ const Login = () => {
               <p>로그인 됐냐?</p>
             ) : (
               <div
-                onClick={()=>checkLoginStatus()}
+                onClick={() => checkLoginStatus()}
                 style={{ backgroundColor: "red", cursor: "pointer" }}
               >
                 로그인 확인

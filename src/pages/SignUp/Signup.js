@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import * as S from "./style";
 import arrowDown from "../../assets/arrow-down.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSignupMutation } from "../../services/auth/mutation";
 
 const SignupPage = () => {
+  const navigate = useNavigate();
   const [signupUserData, setSignupUserData] = useState({
     name: "",
     nickname: "",
     id: "",
     pw: "",
-  })
+  });
 
   const signupMutate = useSignupMutation(signupUserData);
 
@@ -20,6 +21,10 @@ const SignupPage = () => {
     console.log(signupUserData);
   };
 
+  const handleSignup = () => {
+    signupMutate.mutate();
+    navigate("/");
+  };
 
   return (
     <S.Container>
@@ -37,10 +42,7 @@ const SignupPage = () => {
 
           <div style={{ display: "flex" }}>
             <p style={{ fontSize: "18px" }}>이미 계정이 있으신가요?</p>
-            <Link
-              to={`/login`}
-              style={{ color: "#0047FF", marginLeft: "10px" }}
-            >
+            <Link to={`/login`} style={{ color: "#0047FF", marginLeft: "10px" }}>
               <p style={{ fontSize: "18px" }}>로그인</p>
             </Link>
           </div>
@@ -69,19 +71,19 @@ const SignupPage = () => {
               <S.Label>아이디</S.Label>
               <S.InputWrapper>
                 <input
-                style={{
-                  fontSize: '18px',
-                  border: 'none',
-                  padding: '0px 40px',
-                  borderRadius: '35px'
-                }}
+                  style={{
+                    fontSize: '18px',
+                    border: 'none',
+                    padding: '0px 40px',
+                    borderRadius: '35px'
+                  }}
                   name="id"
                   placeholder="아이디"
                   type="text"
                   onChange={handleSignupUserData}
                 />
-                  <S.InputButton>중복확인</S.InputButton>
-                </S.InputWrapper>
+                <S.InputButton>중복확인</S.InputButton>
+              </S.InputWrapper>
             </S.FormField>
 
             <S.FormField>
@@ -93,13 +95,10 @@ const SignupPage = () => {
                 onChange={handleSignupUserData}
               />
             </S.FormField>
-
             <S.ButtonContainer>
-              
-              <S.Button type="button" onClick={()=> signupMutate.mutate()}>
+              <S.Button type="button" onClick={handleSignup}>
                 회원가입
               </S.Button>
-
             </S.ButtonContainer>
           </S.SignUpContainer>
         </S.Frame>
