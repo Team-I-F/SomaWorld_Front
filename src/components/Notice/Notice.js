@@ -16,9 +16,9 @@ const Notice = () => {
   };
 
   useEffect(() => {
-    // const slideInterval = setInterval(goToNextSlide, 5000);
+    const slideInterval = setInterval(goToNextSlide, 5000);
     return () => {
-      // clearInterval(slideInterval);
+      clearInterval(slideInterval);
     };
   }, []);
 
@@ -96,14 +96,14 @@ const Button = styled.button`
 
 const PrevButton = styled(Button)`
   left: -100px;
-  top: 200px;
+  top: 180px;
   transform: translateX(-50%);
   z-index: 1;
 `;
 
 const NextButton = styled(Button)`
   right: -100px;
-  top: 200px;
+  top: 180px;
   transform: translateX(50%);
 `;
 
