@@ -18,7 +18,8 @@ export default Footer;
 
 
 const StyledFooter = styled.div`
-  position: absolute;
+  position: fixed;
+  z-index: 1;
   bottom: 0;
 
   background-color: #95b9ff;

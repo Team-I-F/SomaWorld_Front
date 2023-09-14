@@ -46,7 +46,8 @@ const MainPage = () => {
             display: "flex",
             flexWrap: "wrap",
             flexDirection: "row",
-            gap: '30px'
+            gap: '30px',
+            marginBottom: '100px'
           }}
         >
 
