@@ -19,7 +19,10 @@ function App() {
         <Route path="/search" element={<Search />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<SignupPage />}></Route>
+        
+        {/* 삭제 예쩡 */}
         <Route path="/gallery" element={<Gallerys />}></Route>
+
         <Route path="/gallery/:boardID" element={<Board />}></Route>
         <Route path="/:boardID/write" element={<Write />}></Route>
         <Route path="/gallery/:boardID/:tableID" element={<Table />}></Route>

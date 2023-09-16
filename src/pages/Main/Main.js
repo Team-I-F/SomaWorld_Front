@@ -1,12 +1,12 @@
 import Header from "../../components/Header/Header";
-import Post from "../../components/Post/Post";
 import Notice from "../../components/Notice/Notice";
 import Footer from "../../components/Footer/Footer";
 
 import { useEffect, useState } from "react";
 import { getgalleryList } from "../../utils/api/board";
 import styled from "styled-components";
-import GalleryItem from "../Gallerys/Post";
+import GalleryItem from "../Gallerys/GalleryItem";
+import { Link } from "react-router-dom";
 
 const MainPage = () => {
   const [gallerys, setGallerys] = useState([]);
@@ -20,47 +20,27 @@ const MainPage = () => {
         console.error(error);
       }
     }
-
     fetchGalleryList(); 
-
   }, []);
-
-
 
   return (
     <div>
-
-    <Header />
-
+      <Header />
       <div style={{ margin: 'auto 200px'}}>
-
-      <div style={{height: '120px'}}></div>
-      
-      <Notice />
-      <PostTabTitle>
-        소마월드와 함께 다양한 이야기를 해보세요.
-      </PostTabTitle>
-
-      <div>
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            flexDirection: "row",            
-            gap: '30px', 
-            marginBottom: '100px',
-            justifyContent: 'center'
-          }}
-        >
+        <div style={{height: '120px'}}></div>
+        <Notice />
+        <PostTabTitle>
+          소마월드와 함께 다양한 이야기를 해보세요.
+        </PostTabTitle>
+        <GridContainer>
           {gallerys.map((item) => (
-            <GalleryItem
-              title = {item.title}
-            />
+            <Link to={`gallery/${item.galleryId}`} style={{textDecoration: 'none', color: 'inherit'}} key={item.galleryId}>
+              <GalleryItem
+                title={item.galleryName}
+              />
+            </Link>
           ))}
-
-        </div>
-      </div>
-
+        </GridContainer>
       </div>
       <Footer />
     </div>
@@ -72,5 +52,13 @@ export default MainPage;
 const PostTabTitle = styled.p`
   font-size: 30px;
   display: flex;
-  font-weight: 600
+  font-weight: 600;
+`;
+
+const GridContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 30px;
+  justify-content: center;
+  margin: 0 100px;
 `;

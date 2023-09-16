@@ -2,9 +2,13 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getgalleryList } from "../../utils/api/board";
 import { createGallery } from "../../utils/api/gallery";
+import { loginCheck } from "../../services/auth/api";
 
 const Gallerys = () => {
 
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [gallerys, setGallerys] = useState([]);
   const [createGallData, setCreateGalldata] = useState({
     galleryName: ""
   });
@@ -32,8 +36,6 @@ const Gallerys = () => {
   };
 
 
-  const [gallerys, setGallerys] = useState([]);
-
   function initialgallerys() {
     const response = getgalleryList();
 
@@ -42,7 +44,6 @@ const Gallerys = () => {
     response
     .then(function (data) {
       setGallerys(data.data);
-      console.log(response);
     })
     .catch((error) => {
       console.log(error);
@@ -52,11 +53,30 @@ const Gallerys = () => {
 
   useEffect(() => {
     initialgallerys();
+    checkLoginStatus();
   }, []);
+
+
+  const checkLoginStatus = async () => {
+    try {
+      const login = await loginCheck();
+      console.log(login)
+      setIsLoggedIn(login);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
 
   return (
     <div>
       <div>
+      <div
+                onClick={() => checkLoginStatus()}
+                style={{ backgroundColor: "red", cursor: "pointer" }}
+              >
+                로그인 확인
+              </div>
         <h1>갤러리들</h1>
         <div>
             <input

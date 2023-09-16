@@ -9,10 +9,6 @@ const Post = ({ title, description, coverImg, userName, views }) => {
 
           <Script>
             {description}
-            한 세줄정도 넣을건데 좀 귀찮기는 하다
-            한 세줄정도 넣을건데 좀 귀찮기는 하다
-            한 세줄정도 넣을건데 좀 귀찮기는 하다
-            한 세줄정도 넣을건데 좀 귀찮기는 하다
           </Script>
 
           <BottomBox>
@@ -46,10 +42,12 @@ const Img = styled.img`
   width: 100%;
   height: 50%;
   border-radius: 10px 10px 0px 0px;
+  background-color: gray;
 `;
 
 const ContentsBox = styled.div`
   padding: 20px;
+  background-color: aliceblue;
 `;
 
 const BottomBox = styled.div`

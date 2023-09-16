@@ -65,12 +65,8 @@ const Write = () => {
     description: "",
   });
 
-
-
   useEffect(() => {
   }, []);
-
-
 
   const handleWrite = async () => {
     try {

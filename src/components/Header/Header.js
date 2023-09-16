@@ -7,8 +7,6 @@ import SearchBar from "./SearchBar/SearchBar";
 function Header() {
   return (
     <HeadContainer>
-
-
         <HeadBox>
         <HeadTitle>SomaWorld</HeadTitle>
 

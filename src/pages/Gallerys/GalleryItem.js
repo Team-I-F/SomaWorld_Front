@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const GalleryItem = ({ title, description, coverImg, userName, views }) => {
+const GalleryItem = ({ title, description, coverImg }) => {
   return (
     <ItemContainer>
       <Img alt="" src={coverImg} />
@@ -9,10 +9,6 @@ const GalleryItem = ({ title, description, coverImg, userName, views }) => {
 
           <Script>
             {description}
-            한 세줄정도 넣을건데 좀 귀찮기는 하다
-            한 세줄정도 넣을건데 좀 귀찮기는 하다
-            한 세줄정도 넣을건데 좀 귀찮기는 하다
-            한 세줄정도 넣을건데 좀 귀찮기는 하다
           </Script>
 
           <BottomBox>

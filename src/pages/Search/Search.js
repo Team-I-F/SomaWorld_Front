@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import customAxios from "../../utils/axios/axios";
 import styled from "styled-components";
 import arrowDown from "../../assets/arrow-down.png";
 
 const SearchPage = () => {
+  const { boardID } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
   const [searchTerm, setSearchTerm] = useState("");
