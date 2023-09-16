@@ -3,10 +3,13 @@ import { loginUser, signupUser } from "./api";
 
 export const useLoginMutation = (loginUserData) => {
   return useMutation(async () => {
-    const response = await loginUser(loginUserData);
-    if (response) {
-      sessionStorage.setItem("loginData", JSON.stringify(response));
-    }
+    const response = await loginUser(loginUserData);    
+    console.log(response);
+    
+    // if (response) {
+    //   sessionStorage.setItem("loginData", JSON.stringify(response));
+    // }
+
     return response;
   }, {
     onSuccess: () => {

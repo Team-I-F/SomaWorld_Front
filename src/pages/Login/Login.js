@@ -21,7 +21,6 @@ const Login = () => {
   };
 
   useEffect(() => {
-    // 페이지가 로드될 때 로그인 상태를 확인하도록 설정
     checkLoginStatus();
   }, []);
 
