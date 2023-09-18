@@ -1,10 +1,36 @@
 import { Link, useNavigate } from "react-router-dom";
 import Button from "./Button/Button";
 import styled from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SearchBar from "./SearchBar/SearchBar";
+import { loginCheck, logoutUser } from "../../services/auth/api";
+import { useRecoilState } from "recoil";
+import { isLoggedInState } from "../../utils/recoil/recoil";
 
 function Header() {
+
+  const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
+
+
+  useEffect(() => {
+  }, []);
+
+  const checkLoginStatus = async () => {
+    try {
+      const response = await loginCheck();
+      setIsLoggedIn(response);
+      console.log(isLoggedIn)
+
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleLogout = () => {
+    logoutUser();
+    setIsLoggedIn(false);
+  };
+
   return (
     <HeadContainer>
         <HeadBox>
@@ -12,23 +38,22 @@ function Header() {
 
         <SearchBar/>    
 
-
         <div style={{ display: "flex", alignItems: "center" }}>
-          {/* 로그인 안한 경우 */}
-          
-          <Link to={`/signup`} style={{ textDecoration: "none" }}>
-            <Button name={"회원가입"} />
-          </Link>
-          <Link to={`/login`} style={{ textDecoration: "none" }}>
-            <Button name={"로그인"} />
-          </Link>
 
-        {/* 로그인 한 경우 */}
-        {/* <Button name={"새 글 작성"} /> */}
-        
+        {isLoggedIn ? (
+            <StyledButton onClick={handleLogout}>로그아웃</StyledButton>
+          ) : (
+          <>
+            <Link to={`/signup`} style={{ textDecoration: "none" }}>
+              <Button name={"회원가입"} />
+            </Link>
+            <Link to={`/login`} style={{ textDecoration: "none" }}>
+              <Button name={"로그인"} />
+            </Link>
+          </>
+          )}
         </div>
         </HeadBox>
-
     </HeadContainer>
   );
 }
@@ -62,3 +87,13 @@ const HeadTitle = styled.span`
   line-height: 44px;
   font-weight: bold;
 `;
+
+
+const StyledButton = styled.span`
+  font-style: normal;
+  padding: 5px 20px;
+  border-radius: 25px;
+  font-weight: bold;
+  color: #95B9FF;
+  border: 2px solid #95B9FF;
+`

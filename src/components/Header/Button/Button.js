@@ -21,7 +21,7 @@ const StyledButton = styled.span`
     `}
 
   ${({name}) =>
-    name === "새 글 작성" &&
+    name === "로그아웃" &&
     `
       color: #95B9FF;
       border: 2px solid #95B9FF;

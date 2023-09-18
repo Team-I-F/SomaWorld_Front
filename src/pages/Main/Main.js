@@ -9,6 +9,7 @@ import GalleryItem from "../Gallerys/GalleryItem";
 import { Link } from "react-router-dom";
 
 const MainPage = () => {
+  
   const [gallerys, setGallerys] = useState([]);
 
   useEffect(() => {

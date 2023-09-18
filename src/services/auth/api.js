@@ -3,11 +3,12 @@ import customAxios from "../../utils/axios/axios";
 export const loginUser = async (loginUserData) => {
   try {
     const response = await customAxios.post("/user/login", loginUserData);
+
     if (response.status === 200) {
       sessionStorage.setItem("loginData", JSON.stringify(response.data));
     }
 
-    console.log(sessionStorage.getItem("loginData"))    
+    // console.log(sessionStorage.getItem("loginData"))    
     return response;
   } catch (error) {
     throw error; 
@@ -25,6 +26,18 @@ export const loginCheck = async () => {
     const { data } = response; 
     const loggedIn = data.loggedIn; 
     return loggedIn; 
+  } catch (error) {
+    console.log(error);
+    throw new Error("로그인에 실패했습니다.");
+  }
+};
+
+
+
+export const logoutUser = async () => {
+  try {
+    await customAxios.get("/user/logout");  
+    alert("로그아웃 성공");
   } catch (error) {
     console.log(error);
     throw new Error("로그인에 실패했습니다.");

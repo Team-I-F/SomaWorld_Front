@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import arrowDown from "../../assets/arrow-down.png";
 import { useLoginMutation } from "../../services/auth/mutation";
 import { loginCheck } from "../../services/auth/api";
+import { useRecoilState } from "recoil";
+import { isLoggedInState } from "../../utils/recoil/recoil";
 
 const Login = () => {
   const [loginUserData, setLoginUserData] = useState({
@@ -13,7 +15,8 @@ const Login = () => {
 
   const navigate = useNavigate();
   const loginMutate = useLoginMutation(loginUserData);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
+
 
   const handleLoginUserData = (e) => {
     const { name, value } = e.target;
@@ -21,13 +24,14 @@ const Login = () => {
   };
 
   useEffect(() => {
-    checkLoginStatus();
+    // checkLoginStatus();
   }, []);
 
   const checkLoginStatus = async () => {
     try {
       const response = await loginCheck();
       setIsLoggedIn(response);
+      console.log(isLoggedIn)
     } catch (error) {
       console.error(error);
     }
@@ -35,6 +39,7 @@ const Login = () => {
 
   const handleLogin = () => {
     loginMutate.mutate();
+    setIsLoggedIn(true);
     navigate("/");
   };
 
@@ -87,19 +92,6 @@ const Login = () => {
               </S.Button>
             </S.ButtonContainer>
           </S.LoginContainer>
-
-          <div>
-            {isLoggedIn ? (
-              <p>로그인 됐냐?</p>
-            ) : (
-              <div
-                onClick={() => checkLoginStatus()}
-                style={{ backgroundColor: "red", cursor: "pointer" }}
-              >
-                로그인 확인
-              </div>
-            )}
-          </div>
         </S.Frame>
       </S.LoginForm>
     </S.Container>
