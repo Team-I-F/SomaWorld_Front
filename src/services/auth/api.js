@@ -7,8 +7,6 @@ export const loginUser = async (loginUserData) => {
     if (response.status === 200) {
       sessionStorage.setItem("loginData", JSON.stringify(response.data));
     }
-
-    // console.log(sessionStorage.getItem("loginData"))    
     return response;
   } catch (error) {
     throw error; 
@@ -38,6 +36,7 @@ export const logoutUser = async () => {
   try {
     await customAxios.get("/user/logout");  
     alert("로그아웃 성공");
+    
   } catch (error) {
     console.log(error);
     throw new Error("로그인에 실패했습니다.");

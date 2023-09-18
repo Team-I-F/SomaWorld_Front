@@ -6,6 +6,7 @@ import { changeGallery, deleteGallery } from "../../utils/api/gallery";
 import Header from "../../components/Header/Header";
 import Post from "../../components/Post/Post";
 import styled from "styled-components";
+import { loginCheck } from "../../services/auth/api";
 
 const Gallery = () => {
   const { boardID } = useParams();

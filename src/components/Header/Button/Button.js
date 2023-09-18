@@ -7,25 +7,11 @@ const StyledButton = styled.span`
   font-weight: bold;
   color: gray;
 
-  ${({name}) =>
-    name === "회원가입" &&
-    `
-      color: #95B9FF;
-      border: 2px solid #95B9FF;
-    `}
+  ${({ name }) => `
+    ${name === "회원가입" || name === "로그아웃" ? `color: #95B9FF; border: 2px solid #95B9FF;` : ``}
+    ${name === "로그인" || name === "갤러리 생성" ? `border: none;` : ``}
+  `}
 
-  ${({name}) =>
-    name === "로그인" &&
-    `
-      border: none;
-    `}
-
-  ${({name}) =>
-    name === "로그아웃" &&
-    `
-      color: #95B9FF;
-      border: 2px solid #95B9FF;
-    `}
 `;
 
 function Button({ name }) {

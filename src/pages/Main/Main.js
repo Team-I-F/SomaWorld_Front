@@ -21,12 +21,14 @@ const MainPage = () => {
         console.error(error);
       }
     }
-    fetchGalleryList(); 
+    fetchGalleryList();
+    console.log(gallerys) 
   }, []);
 
   return (
     <div>
       <Header />
+
       <div style={{ margin: 'auto 200px'}}>
         <div style={{height: '120px'}}></div>
         <Notice />

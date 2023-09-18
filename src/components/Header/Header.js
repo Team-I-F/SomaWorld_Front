@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "./Button/Button";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
@@ -11,20 +11,10 @@ function Header() {
 
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
 
-
-  useEffect(() => {
-  }, []);
-
-  const checkLoginStatus = async () => {
-    try {
-      const response = await loginCheck();
-      setIsLoggedIn(response);
-      console.log(isLoggedIn)
-
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const location = useLocation();
+  const isGalleryPage = location.pathname === "/";
+  const isGalleryWithNumber = location.pathname.startsWith("/gallery/");
+  
 
   const handleLogout = () => {
     logoutUser();
@@ -34,14 +24,21 @@ function Header() {
   return (
     <HeadContainer>
         <HeadBox>
-        <HeadTitle>SomaWorld</HeadTitle>
+        <HeadTitle onClick={()=>console.log("isLoggedIn: ", isLoggedIn)}>SomaWorld</HeadTitle>
 
         <SearchBar/>    
 
         <div style={{ display: "flex", alignItems: "center" }}>
 
         {isLoggedIn ? (
+          <>
+            {location.pathname === "/" && 
+              <StyledLink to={'/gallery'}>
+                <Button name={"갤러리 생성"} />
+              </StyledLink>
+            }
             <StyledButton onClick={handleLogout}>로그아웃</StyledButton>
+          </>
           ) : (
           <>
             <Link to={`/signup`} style={{ textDecoration: "none" }}>
@@ -96,4 +93,9 @@ const StyledButton = styled.span`
   font-weight: bold;
   color: #95B9FF;
   border: 2px solid #95B9FF;
+`
+
+const StyledLink = styled(Link)`
+  outline: none;
+  text-decoration: none;
 `

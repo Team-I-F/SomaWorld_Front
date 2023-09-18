@@ -1,4 +1,3 @@
-import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login/Login";
 import Main from "./pages/Main/Main";
@@ -20,7 +19,6 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<SignupPage />}></Route>
         
-        {/* 삭제 예쩡 */}
         <Route path="/gallery" element={<Gallerys />}></Route>
 
         <Route path="/gallery/:boardID" element={<Board />}></Route>
