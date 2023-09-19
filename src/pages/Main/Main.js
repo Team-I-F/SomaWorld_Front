@@ -30,7 +30,7 @@ const MainPage = () => {
       <Header />
 
       <div style={{ margin: 'auto 200px'}}>
-        <div style={{height: '120px'}}></div>
+        <div style={{height: '40px'}}></div>
         <Notice />
         <PostTabTitle>
           소마월드와 함께 다양한 이야기를 해보세요.
@@ -45,6 +45,8 @@ const MainPage = () => {
           ))}
         </GridContainer>
       </div>
+
+      <div style={{height: '100px'}}></div>
       <Footer />
     </div>
   );

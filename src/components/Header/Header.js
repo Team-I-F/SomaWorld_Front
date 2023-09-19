@@ -59,7 +59,8 @@ export default Header;
 
 const HeadContainer = styled.div`
   display: flex;
-  position: fixed;
+  /* position: fixed; */
+  position: sticky;
   width: 100%;  
   height: 80px;
   border-bottom: 1px solid #b0b0b0;
@@ -72,7 +73,6 @@ const HeadContainer = styled.div`
 const HeadBox = styled.div`
   width: calc(100% - 400px);
   display: flex;
-  position: fixed;
   height: 80px;
   border-bottom: 1px solid #b0b0b0;
   justify-content: space-between;

@@ -17,9 +17,10 @@ const Gallerys = () => {
         ...createGallData,
       };
       const createdGall = await createGallery(data);
-      console.log("갤러리 생성 완료:", createdGall);
+      alert("갤러리 생성 성공!");
       navigate("/");
     } catch (error) {
+      alert("갤러리 생성 실패..");
       console.log("갤러리 생성 실패:", error.message);
     }
   };
@@ -44,7 +45,6 @@ const Gallerys = () => {
         <StyledLink to={"/"}>
           <BackIcon src="./assets/img13.png" alt="X"/>
         </StyledLink>
-        <div><h2>갤러리 생성</h2></div>
       </HeaderContainer>
       
       <CreateBox>
