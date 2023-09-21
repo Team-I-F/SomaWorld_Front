@@ -68,14 +68,28 @@ const Gallery = () => {
   return (
     <div>
       <Header />
-
       <div style={{ margin: "auto 200px" }}>
-        <div style={{ height: "120px"}}></div>
+
+        {/* 이거 만든 인간이면? */}
+        <PutContainer>
+          <h1>갤러리 이름을 수정하시겠어요?</h1>
+          <div style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
+          <Input
+            type="text"
+            name="galleryName"
+            value={changeGallData.galleryName}
+            placeholder=""
+            onChange={handleInputChange}
+          />
+            <Button onClick={handleGallChange}>수정</Button>
+            <Button onClick={handleGalldelete}>삭제</Button>
+          </div>
+        </PutContainer>
 
         <GalleryGrid>
           {galleryList &&
             galleryList.map((item) => (
-              <Link
+              <StyledLink
                 to={`/gallery/${boardID}/${item.tableID}`}
                 key={item.tableID}
               >
@@ -86,31 +100,21 @@ const Gallery = () => {
                   userName={item.userNickname}
                   description={removeHTMLTags(item.description)}
                 />
-              </Link>
+              </StyledLink>
             ))}
         </GalleryGrid>
 
-        <div>
-          삭제할거~
-          <input
-            type="text"
-            name="galleryName"
-            value={changeGallData.galleryName}
-            onChange={handleInputChange}
-            placeholder="수정할 갤러리 이름"
-          />
-
-          <ButtonContainer>
-            <Button onClick={handleGallChange}>갤러리 수정 버튼</Button>
-            <Button onClick={handleGalldelete}>갤러리 삭제 버튼</Button>
-          </ButtonContainer>
-        </div>
       </div>
     </div>
   );
 };
 
 export default Gallery;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+`;
 
 const GalleryGrid = styled.div`
   display: grid;
@@ -119,17 +123,34 @@ const GalleryGrid = styled.div`
   margin: 0 100px;
 `;
 
-const ButtonContainer = styled.div`
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
+const PutContainer = styled.div`
+  background-color: #f3f3f3;
+  margin: 50px auto;
+  font-size: 18px;
+  height: 200px;
+  padding: 50px;
+  border-radius: 25px;
 `;
+
+const Input = styled.input`
+  border: none;
+  padding: 5px;
+  font-size: 18px;
+  margin-left: 10px;
+  height: 40px;
+  border-radius: 5px;
+`
 
 const Button = styled.button`
   padding: 5px 10px;
-  background-color: #007bff;
+  width: 80px;
+  height: 50px;
+  font-size: 18px;
+  /* background-color: #007bff; */
+  background-color: #95B9FF;
   color: #fff;
   border: none;
   cursor: pointer;
+  border-radius: 5px;
 `;
 

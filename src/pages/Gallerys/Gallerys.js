@@ -46,7 +46,7 @@ const Gallerys = () => {
           <BackIcon src="./assets/img13.png" alt="X"/>
         </StyledLink>
       </HeaderContainer>
-      
+
       <CreateBox>
         <img src="./assets/img16.png" alt="흠.."/>
         <Input
@@ -59,7 +59,6 @@ const Gallerys = () => {
         <CreateButton onClick={handleGallWrite}>확인</CreateButton>    
   
       </CreateBox>
-
     </GallerysContainer>
   );
 };

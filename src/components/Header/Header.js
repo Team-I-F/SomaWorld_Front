@@ -31,23 +31,23 @@ function Header() {
         <div style={{ display: "flex", alignItems: "center" }}>
 
         {isLoggedIn ? (
-          <>
+          <Buttons>
             {location.pathname === "/" && 
               <StyledLink to={'/gallery'}>
                 <Button name={"갤러리 생성"} />
               </StyledLink>
             }
             <StyledButton onClick={handleLogout}>로그아웃</StyledButton>
-          </>
+          </Buttons>
           ) : (
-          <>
+          <Buttons>
             <Link to={`/signup`} style={{ textDecoration: "none" }}>
               <Button name={"회원가입"} />
             </Link>
             <Link to={`/login`} style={{ textDecoration: "none" }}>
               <Button name={"로그인"} />
             </Link>
-          </>
+          </Buttons>
           )}
         </div>
         </HeadBox>
@@ -59,7 +59,6 @@ export default Header;
 
 const HeadContainer = styled.div`
   display: flex;
-  /* position: fixed; */
   position: sticky;
   width: 100%;  
   height: 80px;
@@ -83,6 +82,11 @@ const HeadTitle = styled.span`
   font-size: 35px;
   line-height: 44px;
   font-weight: bold;
+  width: 240px;
+`;
+
+const Buttons = styled.div`
+  width: 240px;
 `;
 
 
@@ -99,3 +103,4 @@ const StyledLink = styled(Link)`
   outline: none;
   text-decoration: none;
 `
+
