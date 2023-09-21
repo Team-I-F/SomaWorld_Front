@@ -99,6 +99,11 @@ const Write = () => {
   return (
     <div style={{ position: "relative" }}>
       <S.PostBox>
+        <S.Head>
+          <S.HeadTitle>SomaWorld</S.HeadTitle>
+          <S.Button onClick={handleWrite}>발행</S.Button>
+          <S.line></S.line>
+        </S.Head>
         <div>
           {/* <S.Input
               type="text"
@@ -129,7 +134,6 @@ const Write = () => {
             }
             modules={modules}
           />
-          <S.Button onClick={handleWrite}>작성</S.Button>
         </div>
       </S.PostBox>
     </div>
