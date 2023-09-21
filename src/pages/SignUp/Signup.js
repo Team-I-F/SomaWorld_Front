@@ -1,76 +1,110 @@
 import React, { useState } from "react";
-import customAxios from "../../utils/axios/axios";
+import * as S from "./style";
+import arrowDown from "../../assets/arrow-down.png";
+import { Link } from "react-router-dom";
+import { useSignupMutation } from "../../services/auth/mutation";
 
 const SignupPage = () => {
-  const [userId, setUserId] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [nickname, setNickname] = useState("");
-  const [error, setError] = useState("");
+  const [signupUserData, setSignupUserData] = useState({
+    name: "",
+    nickname: "",
+    id: "",
+    pw: "",
+  })
 
-  const handleSignup = async () => {
-    try {
-      const response = await customAxios.post("/register", {
-        id: userId,
-        pw: password,
-        name: name,
-        nickname: nickname,
-      });
-      if (response.status === 200) {
-        console.log("회원가입이 완료되었습니다.");
-      }
-    } catch (error) {
-      console.log(error);
-      setError("회원가입에 실패하였습니다.");
-    }
+  const signupMutate = useSignupMutation(signupUserData);
+
+  const handleSignupUserData = (e) => {
+    const { name, value } = e.target;
+    setSignupUserData({ ...signupUserData, [name]: value });
+    console.log(signupUserData);
   };
 
+
   return (
-    <div>
-      <h2>회원가입</h2>
-      <form>
-        <label>
-          아이디:
-          <input
-            type="text"
-            value={userId}
-            onChange={(e) => setUserId(e.target.value)}
+    <S.Container>
+      <S.SignupForm>
+        <Link to={"/"} onClick={(e) => e.stopPropagation()}>
+          <S.BackIcon
+            style={{ transform: "rotate(90)" }}
+            src={arrowDown}
+            alt="아으"
           />
-        </label>
-        <br />
-        <label>
-          비밀번호:
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
-        <br />
-        <label>
-          이름:
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </label>
-        <br />
-        <label>
-          닉네임:
-          <input
-            type="text"
-            value={nickname}
-            onChange={(e) => setNickname(e.target.value)}
-          />
-        </label>
-        <br />
-        <button type="button" onClick={handleSignup}>
-          회원가입
-        </button>
-      </form>
-      {error && <p>{error}</p>}
-    </div>
+        </Link>
+
+        <S.Frame>
+          <S.Title>회원가입</S.Title>
+
+          <div style={{ display: "flex" }}>
+            <p style={{ fontSize: "18px" }}>이미 계정이 있으신가요?</p>
+            <Link
+              to={`/login`}
+              style={{ color: "#0047FF", marginLeft: "10px" }}
+            >
+              <p style={{ fontSize: "18px" }}>로그인</p>
+            </Link>
+          </div>
+
+          <S.SignUpContainer>
+            <S.FormField>
+              <S.Label>이름</S.Label>
+              <S.Input
+                name="name"
+                placeholder="이름"
+                type="text"
+                onChange={handleSignupUserData}
+              />
+            </S.FormField>
+            <S.FormField>
+              <S.Label>닉네임</S.Label>
+              <S.Input
+                name="nickname"
+                placeholder="닉네임"
+                type="text"
+                onChange={handleSignupUserData}
+              />
+            </S.FormField>
+
+            <S.FormField>
+              <S.Label>아이디</S.Label>
+              <S.InputWrapper>
+                <input
+                style={{
+                  fontSize: '18px',
+                  border: 'none',
+                  padding: '0px 40px',
+                  borderRadius: '35px'
+                }}
+                  name="id"
+                  placeholder="아이디"
+                  type="text"
+                  onChange={handleSignupUserData}
+                />
+                  <S.InputButton>중복확인</S.InputButton>
+                </S.InputWrapper>
+            </S.FormField>
+
+            <S.FormField>
+              <S.Label>비밀번호</S.Label>
+              <S.Input
+                name="pw"
+                placeholder="비밀번호"
+                type="password"
+                onChange={handleSignupUserData}
+              />
+            </S.FormField>
+
+            <S.ButtonContainer>
+              
+              <S.Button type="button" onClick={()=> signupMutate.mutate()}>
+                회원가입
+              </S.Button>
+
+            </S.ButtonContainer>
+          </S.SignUpContainer>
+        </S.Frame>
+      </S.SignupForm>
+    </S.Container>
   );
 };
 

@@ -12,13 +12,12 @@ const Board = () => {
     const response = getTable(boardID, tableID);
 
     response
-    .then(function (data) {
-      setTable(data.data[0]);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-
+      .then(function (data) {
+        setTable(data.data[0]);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   useEffect(() => {
