@@ -32,13 +32,14 @@ export const SerchBox = styled.div`
 export const Text = styled.p`
   font-size: 30px;
   font-weight: 800;
-  margin-right: 10px;
+  margin-left: 10px;
   margin-top: 60px;
 `;
 
 export const Boxs = styled.div`
   display: flex;
   justify-content: flex-start;
+  margin-left: 10px;
 `;
 
 export const Date = styled.p`
