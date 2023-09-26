@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import Button from "./Button/Button";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
@@ -8,7 +8,7 @@ import { useRecoilState } from "recoil";
 import { isLoggedInState } from "../../utils/recoil/recoil";
 
 function Header() {
-
+  const { boardID } = useParams();
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
 
   const location = useLocation();
@@ -32,11 +32,16 @@ function Header() {
 
         {isLoggedIn ? (
           <Buttons>
-            {location.pathname === "/" && 
-              <StyledLink to={'/gallery'}>
-                <Button name={"갤러리 생성"} />
-              </StyledLink>
-            }
+          {location.pathname === "/" && 
+            <StyledLink to={'/gallery'}>
+              <Button name={"갤러리 생성"} />
+            </StyledLink>
+          }
+          {location.pathname.startsWith("/gallery/") && 
+            <StyledLink to={`/${boardID}/write`}>
+              <Button name={"글 생성"} />
+            </StyledLink>
+            } 
             <StyledButton onClick={handleLogout}>로그아웃</StyledButton>
           </Buttons>
           ) : (
@@ -87,6 +92,7 @@ const HeadTitle = styled.span`
 
 const Buttons = styled.div`
   width: 240px;
+  align-items: flex-end;
 `;
 
 

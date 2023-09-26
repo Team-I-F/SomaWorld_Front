@@ -7,6 +7,7 @@ import Header from "../../components/Header/Header";
 import Post from "../../components/Post/Post";
 import styled from "styled-components";
 import { loginCheck } from "../../services/auth/api";
+import Footer from "../../components/Footer/Footer";
 
 const Gallery = () => {
   const { boardID } = useParams();
@@ -90,8 +91,7 @@ const Gallery = () => {
           {galleryList &&
             galleryList.map((item) => (
               <StyledLink
-                to={`/gallery/${boardID}/${item.tableID}`}
-                key={item.tableID}
+                to={`/gallery/${boardID}/${item.tableId}`}
               >
                 <Post
                   coverImg={""}
@@ -103,8 +103,9 @@ const Gallery = () => {
               </StyledLink>
             ))}
         </GalleryGrid>
-
+        
       </div>
+      <Footer />
     </div>
   );
 };
