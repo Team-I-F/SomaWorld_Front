@@ -1,79 +1,52 @@
 import Header from "../../components/Header/Header";
-import Post from "../../components/Post/Post";
 import Notice from "../../components/Notice/Notice";
 import Footer from "../../components/Footer/Footer";
 
 import { useEffect, useState } from "react";
-import { getgallery } from "../../utils/api/board";
+import { getgalleryList } from "../../utils/api/board";
 import styled from "styled-components";
+import GalleryItem from "../Gallerys/GalleryItem";
+import { Link } from "react-router-dom";
 
 const MainPage = () => {
-
-  const [postList, setPostList] = useState([])
-
-  function fetchGallery() {
-    const response = getgallery(1);
-    response
-      .then(function (data) {
-        setPostList(data.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+  
+  const [gallerys, setGallerys] = useState([]);
 
   useEffect(() => {
-    fetchGallery();
-    console.log(postList)
-  }, []);  
-
+    async function fetchGalleryList() {
+      try {
+        const response = await getgalleryList();
+        setGallerys(response.data); 
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchGalleryList();
+    console.log(gallerys) 
+  }, []);
 
   return (
     <div>
       <Header />
 
-      <div style={{ paddingTop: '100px', margin: 'auto 200px'}}>
-
-      <Notice />
-
-      <PostTabTitle>
-        소마월드와 함께 다양한 이야기를 해보세요.
-      </PostTabTitle>
-
-      <div style={{ justifyContent: "center"}}>
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            flexDirection: "row",
-            gap: '30px',
-            marginBottom: '100px'
-          }}
-        >
-
-          {/*
-            이건 걍.. 서버 꺼져서
-          {postList.map((item) => (
-            <Post
-              title={item.title}
-              description={item.description}
-              // coverImg={item.coverImg}
-              userName={item.userNickname}
-              views={item.views}
-            />
-          ))} */}
-
-          <Post
-              title={"히히"}
-              // coverImg={item.coverImg}
-              userName={"ㅋ"}
-              views={"100"}
-            />
-
-        </div>
+      <div style={{ margin: 'auto 200px'}}>
+        <div style={{height: '40px'}}></div>
+        <Notice />
+        <PostTabTitle>
+          소마월드와 함께 다양한 이야기를 해보세요.
+        </PostTabTitle>
+        <GridContainer>
+          {gallerys.map((item) => (
+            <Link to={`gallery/${item.galleryId}`} style={{textDecoration: 'none', color: 'inherit'}} key={item.galleryId}>
+              <GalleryItem
+                title={item.galleryName}
+              />
+            </Link>
+          ))}
+        </GridContainer>
       </div>
 
-      </div>
+      <div style={{height: '100px'}}></div>
       <Footer />
     </div>
   );
@@ -84,5 +57,13 @@ export default MainPage;
 const PostTabTitle = styled.p`
   font-size: 30px;
   display: flex;
-  font-weight: 600
+  font-weight: 600;
+`;
+
+const GridContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 30px;
+  justify-content: center;
+  margin: 0 100px;
 `;

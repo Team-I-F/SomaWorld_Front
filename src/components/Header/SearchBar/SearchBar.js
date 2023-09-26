@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+
 function SearchBar() {
     const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState("");
@@ -18,7 +19,7 @@ function SearchBar() {
         <div>
             <form onSubmit={handleSubmit}>
             <Search>
-                <SearchImg src="assets/img.png" />
+                <SearchImg src={"/assets/img.png"} />
                 <SearchInput
                 type="text"
                 value={searchTerm}
@@ -33,10 +34,11 @@ function SearchBar() {
   
   export default SearchBar;
   
-  const Search = styled.div`
+const Search = styled.div`
+  justify-self: center; 
   position: relative;
   display: flex;
-  width: 550px;
+  width: 700px;
   border-radius: 5px;
   padding: 12px 5px;
   background-color: #f3f3f3;

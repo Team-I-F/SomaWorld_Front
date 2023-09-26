@@ -52,7 +52,7 @@ const Notice = () => {
 
 export default Notice;
 
-const NoticeContainer = styled.div`
+const NoticeContainer = styled.div`  
   width: 100%;
   background-color: #95B9FF;
   position: relative;
@@ -98,7 +98,6 @@ const PrevButton = styled(Button)`
   left: -100px;
   top: 180px;
   transform: translateX(-50%);
-  z-index: 1;
 `;
 
 const NextButton = styled(Button)`

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { getTable } from "../../utils/api/board";
 import { useParams } from "react-router-dom";
-import Post from "../../components/Post/Post";
 
 const Board = () => {
   const { boardID, tableID } = useParams();
@@ -9,11 +8,13 @@ const Board = () => {
   const [table, setTable] = useState([]);
 
   function initialBoards() {
+    console.log(boardID, tableID)
     const response = getTable(boardID, tableID);
-
+    
+    console.log(response)
     response
     .then(function (data) {
-      setTable(data.data[0]);
+      // setTable(data.data[0]);
     })
     .catch((error) => {
       console.log(error);
@@ -31,7 +32,7 @@ const Board = () => {
       <h1>테이블</h1>
       {table && (
         <div>
-          <Post table={table} />
+
         </div>
       )}
     </div>
