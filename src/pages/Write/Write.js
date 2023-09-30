@@ -1,10 +1,12 @@
-import React, { useState } from "react";
-import { createPost } from "../../utils/api/board";
-import { useParams, useNavigate } from "react-router-dom";
+import React, { useRef, useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import * as S from "./style";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import axios from 'axios';
+import customAxios from "../../utils/axios/axios";
+
 
 const modules = {
   toolbar: {
@@ -58,6 +60,7 @@ const modules = {
         { background: [] },
       ],
       ["image", "video"],
+      [{ image: true }],
       ["clean"],
     ],
   },
@@ -65,24 +68,60 @@ const modules = {
 
 const Write = () => {
   const { boardID } = useParams();
-  const navigate = useNavigate();
-
+  const quillRef = useRef(null);
   const [formData, setFormData] = useState({
     title: "",
-    userNickname: "",
     description: "",
   });
 
   const handleWrite = async () => {
     try {
-      const data = {
-        tableInfoId: boardID,
-        ...formData,
-      };
-      const createdPost = await createPost(data);
-      console.log("게시물 작성 완료:", createdPost);
+      // Post creation
+      const dataPostCreation = new FormData();
+      dataPostCreation.append("galleryId", boardID);
+      console.log(formData)
+      dataPostCreation.append("title", formData.title);
+      dataPostCreation.append("description", formData.description);
 
-      // navigate(`/${boardID}`);
+      console.log(dataPostCreation)
+      const postResponse = await customAxios.post('/board', dataPostCreation);
+      
+      if (postResponse.data.success) {
+        console.log('게시글이 성공적으로 생성되었습니다.');
+        console.log(postResponse.data.tableId); 
+
+        // navigate(`/${boardID}`);
+                
+        let quillContentHTMLString= quillRef.current.getEditor().root.innerHTML;
+        
+        let parser= new DOMParser();
+        let doc= parser.parseFromString(quillContentHTMLString,"text/html");
+    
+        let imgs= doc.querySelectorAll("img");
+      
+        for(let i=0;i<imgs.length;i++){
+          let img = imgs[i];
+          
+          const dataImageUpload = new FormData();
+          dataImageUpload.append('image', img.src);
+          
+          const imageResponse = await customAxios.put(`/board/image/${postResponse.data.tableId}`, dataImageUpload);
+          
+          if (imageResponse.data.success) {
+            console.log('이미지가 성공적으로 업로드되었습니다.');
+          
+            img.src = imageResponse.data.imageUrl;
+          } else {
+            console.log('이미지 업로드 실패');
+            return;
+          }
+        }
+        
+        // 모든 이미지가 업로드되고 URL이 변경된 후에는 다시 에디터의 내용을 변경해야 합니다.
+        quillRef.current.getEditor().root.innerHTML = doc.body.innerHTML;
+      } else {
+        console.log('게시글 생성 실패');
+      }
     } catch (error) {
       console.log("게시물 작성 실패:", error.message);
     }

@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as S from "./style";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import arrowDown from "../../assets/arrow-down.png";
 import { useLoginMutation } from "../../services/auth/mutation";
+import { loginCheck } from "../../services/auth/api";
+import { useRecoilState } from "recoil";
+import { isLoggedInState } from "../../utils/recoil/recoil";
 
 const Login = () => {
   const [loginUserData, setLoginUserData] = useState({
@@ -10,12 +13,34 @@ const Login = () => {
     pw: "",
   });
 
+  const navigate = useNavigate();
   const loginMutate = useLoginMutation(loginUserData);
+  const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
+
 
   const handleLoginUserData = (e) => {
     const { name, value } = e.target;
     setLoginUserData({ ...loginUserData, [name]: value });
-    console.log(loginUserData);
+  };
+
+  useEffect(() => {
+    // checkLoginStatus();
+  }, []);
+
+  const checkLoginStatus = async () => {
+    try {
+      const response = await loginCheck();
+      setIsLoggedIn(response);
+      console.log(isLoggedIn)
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleLogin = () => {
+    loginMutate.mutate();
+    setIsLoggedIn(true);
+    navigate("/");
   };
 
   return (
@@ -59,7 +84,10 @@ const Login = () => {
             </div>
 
             <S.ButtonContainer>
-              <S.Button type="submit" onClick={() => loginMutate.mutate()}>
+              <S.Button
+                type="button"
+                onClick={handleLogin}
+              >
                 로그인
               </S.Button>
             </S.ButtonContainer>

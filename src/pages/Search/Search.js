@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import customAxios from "../../utils/axios/axios";
+import styled from "styled-components";
+import arrowDown from "../../assets/arrow-down.png";
 
 const SearchPage = () => {
+  const { boardID } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+
+  const handleInputChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
 
   useEffect(() => {
     const searchParam = new URLSearchParams(location.search).get("term");
@@ -22,7 +29,7 @@ const SearchPage = () => {
       setSearchResults(response.data);
     } catch (error) {
       console.log(error);
-      // handle error
+      
     }
   };
 
@@ -34,14 +41,24 @@ const SearchPage = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <input
+
+    <LoginIcon
+        style={{ transform: "rotate(90)" }}
+        src={arrowDown}
+        alt="아으"
+    />
+    
+    <div>
+      <Search onSubmit={handleSubmit} style={{margin: '0 auto'}}>
+        <SearchImg src="assets/img.png" />
+        <SearchInput
           type="text"
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={handleInputChange}
+          placeholder="검색어를 입력하세요..."
         />
-        <button type="submit">Search</button>
-      </form>
+      </Search>
+    </div>
 
       {searchResults.length > 0 ? (
         <ul>
@@ -61,3 +78,33 @@ const SearchPage = () => {
 };
 
 export default SearchPage;
+
+const Search = styled.form`
+position: relative;
+display: flex;
+width: 1200px;
+border-radius: 5px;
+padding: 20px 20px;
+background-color: #f3f3f3;
+`;
+
+const SearchInput = styled.input`
+width: 100%;
+border: none;
+font-size: 14px;
+outline: none;
+background-color: #f3f3f3;
+`;
+
+const SearchImg = styled.img`
+  margin: auto 5px;
+  width: 20px;
+  height: 20px;
+`;
+
+const LoginIcon = styled.img`
+  transform: rotate(180deg);
+  width: 50px;
+  height: 50px;
+  margin: 40px 150px;
+`;
