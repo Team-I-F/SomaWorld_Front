@@ -19,7 +19,7 @@ const Board = () => {
     .catch((error) => {
       console.log(error);
     });
-    
+
   }
 
   useEffect(() => {
