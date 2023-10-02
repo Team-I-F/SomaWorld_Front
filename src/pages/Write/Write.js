@@ -1,11 +1,69 @@
 import React, { useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import * as S from "./style";
 import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css"; 
+import "react-quill/dist/quill.snow.css";
 import customAxios from "../../utils/axios/axios";
 
-const StyledReactQuill = styled(ReactQuill)``;
+
+const modules = {
+  toolbar: {
+    container: [
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      // [{ 'font': [] }],
+      [{ align: [] }],
+      ["bold", "italic", "underline", "strike", "blockquote"],
+      [{ list: "ordered" }, { list: "bullet" }, "link"],
+      [
+        {
+          color: [
+            "#000000",
+            "#e60000",
+            "#ff9900",
+            "#ffff00",
+            "#008a00",
+            "#0066cc",
+            "#9933ff",
+            "#ffffff",
+            "#facccc",
+            "#ffebcc",
+            "#ffffcc",
+            "#cce8cc",
+            "#cce0f5",
+            "#ebd6ff",
+            "#bbbbbb",
+            "#f06666",
+            "#ffc266",
+            "#ffff66",
+            "#66b966",
+            "#66a3e0",
+            "#c285ff",
+            "#888888",
+            "#a10000",
+            "#b26b00",
+            "#b2b200",
+            "#006100",
+            "#0047b2",
+            "#6b24b2",
+            "#444444",
+            "#5c0000",
+            "#663d00",
+            "#666600",
+            "#003700",
+            "#002966",
+            "#3d1466",
+            "custom-color",
+          ],
+        },
+        { background: [] },
+      ],
+      ["image", "video"],
+      [{ image: true }],
+      ["clean"],
+    ],
+  },
+};
 
 const Write = () => {
   const { boardID } = useParams();
@@ -27,21 +85,20 @@ const Write = () => {
       
       if (postResponse.data.success) {
         console.log('게시글이 성공적으로 생성되었습니다.');
-        console.log(postResponse.data.tableId); // 이 값은 추후 이미지 업로드 시 사용됩니다.
-        
+        console.log(postResponse.data.tableId); 
+
         // navigate(`/${boardID}`);
-        
+                
         let quillContentHTMLString= quillRef.current.getEditor().root.innerHTML;
         
         let parser= new DOMParser();
         let doc= parser.parseFromString(quillContentHTMLString,"text/html");
-      
-      	let imgs= doc.querySelectorAll("img");
+    
+        let imgs= doc.querySelectorAll("img");
       
       	for(let i=0;i<imgs.length;i++){
           let img = imgs[i];
           
-          // 파일 업로드
           const dataImageUpload = new FormData();
           dataImageUpload.append('image', img.src);
           
@@ -49,8 +106,7 @@ const Write = () => {
           
           if (imageResponse.data.success) {
             console.log('이미지가 성공적으로 업로드되었습니다.');
-            
-            // 이미지 URL을 바꿉니다.
+          
             img.src = imageResponse.data.imageUrl;
             
           } else {
@@ -79,73 +135,92 @@ const Write = () => {
     }));
   };
 
-  const modules = {
-    toolbar: {
-      container: [
-        ['bold', 'italic', 'underline', 'strike'],
-        [{ 'header': 1 }, { 'header': 2 }],
-        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-        [{ 'align': [] }],
+  return (
+    <div style={{ position: "relative" }}>
+      <S.PostBox>
+        <S.Head>
+          <S.HeadTitle>SomaWorld</S.HeadTitle>
+          <S.Button onClick={handleWrite}>발행</S.Button>
+          <S.line></S.line>
+        </S.Head>
+        <div>
+          {/* <S.Input
+              type="text"
+              name="title"
+              value={formData.title}
+              onChange={handleInputChange}
+              placeholder="제목"
+            />
+            <S.Input
+              type="text"
+              name="userNickname"
+              value={formData.userNickname}
+              onChange={handleInputChange}
+              placeholder="작성자"
+            /> */}
+          {/* <Textarea
+              name="description"
+              value={formData.description}
+              onChange={handleInputChange}
+              placeholder="본문"
+            ></Textarea> */}
+
+            <StyledReactQuill
+              name="description"
+              value={formData.description}
+              onChange={(value) =>
+                handleInputChange({ target: { name: "description", value } })
+              }
+              modules={modules}
+            />
+
+              <S.Button onClick={handleWrite}>작성</S.Button>
+            
+          </div>
         
-        // 아래 코드는 툴바의 "image" 버튼이 클릭될 때 실행되는 함수입니다.
-        ['image'],
-      ],
-      handlers: {
-          image: () => {
-              let fileInput = document.createElement('input');
-              fileInput.setAttribute('type', 'file');
-              fileInput.setAttribute('accept', 'image/*');
-              fileInput.click();
-
-              // 파일 선택 시 실행될 이벤트 리스너
-              fileInput.onchange = async () => {
-                  let file = fileInput.files[0];
-                  let formData = new FormData();
-                  formData.append('image', file);
-                  const res = await customAxios.put(`/board/image/temp`, formData);
-                  
-                  if (res.data.success) {
-                      console.log("이미지 업로드 성공");
-                      let range = quillRef.current.getEditor().getSelection(true);
-                      quillRef.current.getEditor().insertEmbed(range.index, "image", res.data.imageUrl);
-                      
-                      console.log(res.data.imageUrl); 
-                      
-                  } else {
-                      console.error("이미지 업로드 실패");
-                  }
-                  
-              };
-          },
-      },
-    },
-};
-
-return (
-    <div>
-      <input
-        type="text"
-        name="title"
-        value={formData.title}
-        onChange={handleInputChange}
-        placeholder="제목"
-      />
-      
-    	<StyledReactQuill
-      	ref={quillRef}
-      	name="description"
-      	value={formData.description}
-      	onChange={(value) =>
-        	handleInputChange({ target: { name: "description", value } })
-      	}
-      	placeholder="본문"
-      	modules={modules} 
-    	/>
-    	
-    	<button onClick={handleWrite}>작성</button>
-  	</div>
-);
-
+      </S.PostBox>
+    </div>
+  );
 };
 
 export default Write;
+
+
+
+const StyledReactQuill = styled(ReactQuill)`
+  
+  position: relative;
+
+  .quill{
+    background-color: aliceblue;
+    position: relative;
+  }
+
+  .ql-toolbar {
+    height: 100px;
+    width: 100%;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ql-formats {
+    /* button {
+      font-size: 20px; 
+    } */
+  }
+
+  .ql-container{
+    position: fixed;
+    margin-top: 100px;
+    width: 60%;
+    overflow-y: auto;
+    margin-left: 20%;
+    border: none;
+  }
+
+  .ql-editor{
+  }
+
+`;

@@ -1,0 +1,88 @@
+{
+  "table": [
+    {
+      "tableID": 1,
+      "title": "테스트1",
+      "created": "2023-05-11",
+      "view": 0,
+      "userNickname": "테스트닉네임1"
+    },
+    {
+      "tableID": 2,
+      "title": "테스트2",
+      "created": "2023-05-12",
+      "views": 1,
+      "userNickname": "테스트닉네임2"
+    },
+    {
+      "tableID": 3,
+      "title": "테스트3",
+      "created": "2023-05-13",
+      "view": 2,
+      "userNickname": "테스트닉네임3"
+    },
+    {
+      "tableID": 4,
+      "title": "테스트4",
+      "created": "2023-05-14",
+      "view": 3,
+      "userNickname": "테스트닉네임4"
+    },
+    {
+      "tableID": 5,
+      "title": "테스트5",
+      "created": "2023-05-15",
+      "view": 4,
+      "userNickname": "테스트닉네임5"
+    },
+    {
+      "tableID": 6,
+      "title": "테스트6",
+      "created": "2023-05-16",
+      "view": 5,
+      "userNickname": "테스트닉네임6"
+    },
+    {
+      "tableID": 7,
+      "title": "테스트7",
+      "created": "2023-05-17",
+      "view": 6,
+      "userNickname": "테스트닉네임7"
+    },
+    {
+      "tableID": 8,
+      "title": "테스트8",
+      "created": "2023-05-18",
+      "view": 7,
+      "userNickname": "테스트닉네임8"
+    },
+    {
+      "tableID": 9,
+      "title": "테스트9",
+      "created": "2023-05-19",
+      "view": 8,
+      "userNickname": "테스트닉네임9"
+    },
+    {
+      "tableID": 10,
+      "title": "테스트1",
+      "created": "2023-05-20",
+      "view": 9,
+      "userNickname": "테스트닉네임100"
+    },
+    {
+      "tableID": 11,
+      "title": "테스트11",
+      "created": "2023-05-21",
+      "view": 10,
+      "userNickname": "테스트닉네임111"
+    },
+    {
+      "tableID": 12,
+      "title": "테스트12",
+      "created": "2023-05-22",
+      "view": 11,
+      "userNickname": "테스트닉네임122"
+    }
+  ]
+}
