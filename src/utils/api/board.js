@@ -20,9 +20,21 @@ export const getTable = async (boardID, tableID) => {
 export const createPost = async (data) => {
   try {
     const response = await customAxios.post("/board", data);
-    return response.data;  
+    return response;  
   } catch (error) {
     console.log(error);
     throw new Error("게시물 작성에 실패했습니다.");
   }
 };
+
+export const uploadImage = async (tableId, imageFile) => {
+  try {
+    const formData = new FormData();
+    formData.append('image', imageFile);
+    await customAxios.put(`/image/${tableId}`, formData);
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
