@@ -7,6 +7,7 @@ import axios from 'axios';
 import * as S from "./style"
 import ImageUploadModal from './ImageUploadModal';
 import customAxios from "../../utils/axios/axios";
+import styled from "styled-components";
 
 
 const Write = () => {
@@ -42,12 +43,9 @@ const Write = () => {
     console.log("파일 등록했냐")
        let formDataImg = new FormData();
        formDataImg.append('image', selectedImage);
-
        await customAxios.put(`/board/image/${tableId}`, formDataImg);
-       
        setSelectedImage(null);
        setIsModalOpen(false);
-     
    };
 
 return (
@@ -61,16 +59,52 @@ return (
 
 <div>
 <input type="text" name="title" value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} placeholder="제목"/>
-<ReactQuill value={formData.description} onChange={(value) => setFormData({ ...formData, description: value })}/>
+<StyledReactQuill value={formData.description} onChange={(value) => setFormData({ ...formData, description: value })}/>
 <ImageUploadModal isOpen={isModalOpen} onRequestClose={() => setIsModalOpen(false)} onFileChange={handleFileChange}/>
 
 </div>
-
-<button onClick={handleWrite}>Submit</button> 
-
 </S.PostBox>
 </div>
  );
 };
 
 export default Write;
+
+
+const StyledReactQuill = styled(ReactQuill)`
+  
+  position: relative;
+
+  .quill{
+    background-color: aliceblue;
+    position: relative;
+  }
+
+  .ql-toolbar {
+    height: 100px;
+    width: 100%;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ql-formats {
+    /* button {
+      font-size: 20px; 
+    } */
+  }
+
+  .ql-container{
+    position: fixed;
+    margin-top: 100px;
+    width: 60%;
+    overflow-y: auto;
+    margin-left: 20%;
+    border: none;
+  }
+
+  .ql-editor{
+  }
+
+`;

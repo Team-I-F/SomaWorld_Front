@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { getTable } from "../../utils/api/board";
 import { useParams } from "react-router-dom";
 import styled from 'styled-components';
+import CommentsSection from "../Comment/Comment";
+import Comments from "../Comment/Comment";
 
 const BoardWrapper = styled.div`
   margin: 0 auto;
@@ -55,8 +57,6 @@ const Board = () => {
   
     useEffect(() => {
       initialBoards();
-      console.log("어~ 테이블이야")
-      console.log(table);
     }, []);
   
     return (
@@ -69,6 +69,7 @@ const Board = () => {
                     <Views>Views : {table.views}</Views>
                 </SubInfo>
                 <Description dangerouslySetInnerHTML={{ __html : table.description }}/>
+              <Comments tableId={tableID}/>
             </>
             }
         </BoardWrapper>

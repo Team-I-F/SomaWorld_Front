@@ -1,38 +1,74 @@
 import * as S from "./style";
+import React, { useState, useEffect } from 'react';
+import customAxios from '../../utils/axios/axios';
 
-export const Comment = () => {
+const Comments = ({ tableId }) => {
+  const [comments, setComments] = useState([]);
+  const [newCommentText, setNewCommentText] = useState('');
+
+  useEffect(() => {
+    customAxios.get(`/comment/${tableId}`)
+      .then((response) => {
+        setComments(response.data);
+        console.log(comments);
+      })
+      .catch((error) => {
+        console.error('Failed to fetch comments:', error);
+      });
+  }, [tableId]);
+
+  const handleNewCommentChange = (event) => {
+    setNewCommentText(event.target.value);
+  };
+
+  const handleNewCommentSubmit = (event) => {
+    event.preventDefault();
+
+    customAxios.post('/comment', { tableId: tableId, comment: newCommentText })
+      .then((response) => {
+        setComments([...comments, response.data]);
+        setNewCommentText('');
+
+            customAxios.get(`/comment/${tableId}`)
+            .then((response) => {
+              setComments(response.data);
+            })
+            .catch((error) => {
+              console.error('Failed to fetch comments:', error);
+            });
+
+      })
+      .catch((error) => {
+        console.error('Failed to create comment:', error);
+      });
+  };
+
   return (
     <div>
-      <S.Text>댓글 12개</S.Text>
-      <S.TextBox type="text"></S.TextBox>
-      <S.Container>
-        <S.Img1 src="/assets/img31.png"></S.Img1>
-        <S.NickName>빵빵아!옥지얌!</S.NickName>
-        <S.Hour>2시간전</S.Hour>
-        <S.Comment1>감사합니다!도움이 많이 되었어요</S.Comment1>
-        <S.Arrow1 src="/assets/img26.png"></S.Arrow1>
-        <S.Reply1>답글 7개</S.Reply1>
-      </S.Container>
-
-      <S.Container>
-        <S.Img1 src="/assets/img31.png"></S.Img1>
-        <S.NickName>빵빵아!옥지얌!</S.NickName>
-        <S.Hour>1시간전</S.Hour>
-        <S.Comment2>감사합니다!도움이 많이 되었어요</S.Comment2>
-        <S.Arrow2 src="/assets/img26.png"></S.Arrow2>
-        <S.Reply2>답글 6개</S.Reply2>
-      </S.Container>
-
-      <S.Container>
-        <S.Img1 src="/assets/img31.png"></S.Img1>
-        <S.NickName>빵빵아!옥지얌!</S.NickName>
-        <S.Hour>2시간전</S.Hour>
-        <S.Comment3>감사합니다! ㅋㅋ</S.Comment3>
-        <S.Arrow3 src="/assets/img27.png"></S.Arrow3>
-        <S.Reply3>답글 3개</S.Reply3>
-      </S.Container>
+      
+  <div>
+      <S.Text>댓글</S.Text>
+      <form onSubmit={handleNewCommentSubmit}>
+  
+        <S.TextBox type="text" value={newCommentText} onChange={handleNewCommentChange} placeholder="Write a comment..." />
+        <button type="submit">Post Comment</button>
+      </form>
+  
+      {comments.map((comment) =>
+            <S.Container key={comment.commentId}>
+            <S.Img1 src="/assets/img31.png"></S.Img1>
+            <S.NickName>{comment.userNickname}</S.NickName>
+            <S.Hour>{comment.created}</S.Hour>
+            <S.Comment1>{comment.comment}</S.Comment1>
+            <S.Arrow1 src="/assets/img26.png"></S.Arrow1>
+          </S.Container>
+      )}
+    
+    </div>
     </div>
   );
 };
 
-export default Comment;
+export default Comments;
+
+

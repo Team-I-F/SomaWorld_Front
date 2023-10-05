@@ -8,7 +8,7 @@ export const Text = styled.div`
   font-weight: 500;
 `;
 
-export const TextBox = styled.div`
+export const TextBox = styled.input`
   display: flex;
   margin-left: 350px;
   margin-top: 30px;
